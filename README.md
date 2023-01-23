@@ -14,5 +14,13 @@ entertainment, or simply those who desire a little more practice with their engl
 and reasoning skills. As an avid word/puzzle game player, I find interest in exploring the technical
 aspects that make such games possible.
 
+## User Stories
+
+
+- As a user, I want to be able to input a five-letter word as a guess.
+- As a user, I want to be able to add my guess to my list of existing guesses.
+- As a user, I want to be able to view which letters are correct but not in the right position, and which letters are correct and in the correct position.
+- As a user, I want to be able to view the target word if all guesses fail.
+
 
 
