@@ -19,8 +19,11 @@ public class Guess {
         this.colourCode = new ArrayList<>();
     }
 
+    public String getGuessword() {
+        return this.guessword;
+    }
+
     public List<String> getColourCode() {
-        System.out.println(colourCode);
         return this.colourCode;
     }
 
