@@ -3,12 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 // Represents a single five-letter word guess
 public class Guess {
     String[] wordBank = {"HELLO", "SLICE", "LEARN"};
-    //    String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
-    String answer = "SLICE";
+    String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
     private String targetWord;
     private String guessword;
     private List<String> colourCode;
