@@ -35,18 +35,16 @@ public class WordleApp {
         List<String> code = this.currentGuess.getColourCode();
         System.out.println(code);
         String guessWord = this.currentGuess.getGuessword();
-        for (int i = 0; i <= code.size(); i += 2) {
+        for (int i = 0; i < code.size(); i += 2) {
             int num = Integer.valueOf(code.get(i));
-            if (code.get(num + 1) == "Y") {
+            if (code.get(i + 1) == "Y") {
                 System.out.println(YELLOW + guessWord.charAt(num) + GREY);
             }
-            if (code.get(num + 1) == "G") {
-                  System.out.println(GREEN + guessWord.charAt(num) + GREY);
-//                System.out.println(num + 1);
-//                System.out.println(code.get(num + 1));
+
+            if (code.get(i + 1) == "G") {
+                System.out.println(GREEN + guessWord.charAt(num) + GREY);
             }
 
-//        System.out.println(code);
         }
 
     }
