@@ -32,7 +32,6 @@ public class Guess {
             if (guessword.charAt(i) == targetWord.charAt(i)) {
                 colourCode.addAll(Arrays.asList(Integer.toString(i), "G"));
             }
-
         }
         for (int i = 0; i < targetWord.length(); i++) {
             for (int j = 0; j < guessword.length(); j++) {
