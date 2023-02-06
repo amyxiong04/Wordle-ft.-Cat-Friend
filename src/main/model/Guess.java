@@ -11,7 +11,7 @@ public class Guess {
     private String guessword;
     private List<String> colourCode;
 
-    // EFFECTS: creates a guess with corresponding colour code
+    // EFFECTS: creates a guess with its corresponding colour code and sets answer
     public Guess(String makeGuess, String answer) {
         this.guessword = makeGuess;
         this.targetWord = answer;
@@ -21,6 +21,10 @@ public class Guess {
     // Getters
     public String getGuessWord() {
         return this.guessword;
+    }
+
+    public String getTargetWord() {
+        return this.targetWord;
     }
 
     public List<String> getColourCode() {
@@ -44,6 +48,7 @@ public class Guess {
             }
         }
     }
+
 
 //    public static void main(String[] args) {
 //        Guess myobj = new Guess("SLICE");

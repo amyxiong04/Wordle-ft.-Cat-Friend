@@ -13,6 +13,7 @@ public class WordleApp {
     public static final String GREEN = "\u001B[32m";
     private String[] wordBank = {"HELLO", "SLICE"};
     private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
+
     
     private int tries;
     private Guess currentGuess;
@@ -61,6 +62,7 @@ public class WordleApp {
         this.solved = true;
     }
 
+    // move this function to guess
     // MODIFIES: this
     // EFFECTS: for each guess, assesses whether game is solved, and subtracts a try
     public void runWordle() {
@@ -80,10 +82,10 @@ public class WordleApp {
 
             if (greenCount == answer.length()) {
                 setSolved();
-                
+
             }
-            
-            
+
+
         }
     }
 }
