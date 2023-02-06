@@ -3,6 +3,7 @@ package ui;
 import model.Guess;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 // Wordle application
@@ -10,30 +11,37 @@ public class WordleApp {
     public static final String DEFAULT = "\u001B[0m";
     public static final String YELLOW = "\u001B[33m";
     public static final String GREEN = "\u001B[32m";
-    
+    private String[] wordBank = {"HELLO", "SLICE"};
+    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
     
     private int tries;
     private Guess currentGuess;
     private Boolean solved;
 
+    // EFFECTS: creates a wordle game with 6 tries and unsolved state
     public WordleApp() {
         this.tries = 6;
-        this.currentGuess = new Guess("");
+        this.currentGuess = new Guess("", answer);
         this.solved = false;
     }
 
+    // REQUIRES: user input is of type string and length > 0
+    // MODIFIES: this
+    // EFFECTS: processes user input
     public void generateColourCode() {
         Scanner s = new Scanner(System.in);
         System.out.println("Please type a word >");
         String guess = s.nextLine().toUpperCase();
-        this.currentGuess = new Guess(guess);
+        this.currentGuess = new Guess(guess, answer);
         currentGuess.analyzeGuess();
     }
 
+    // MODIFIES: this
+    // EFFECTS : prints out colour-rendered word based on wordle rules
     public void interpretColourCode() {
         List<String> code = this.currentGuess.getColourCode();
-        System.out.println(code);
-        String guessWord = this.currentGuess.getGuessword();
+        //System.out.println(code);
+        String guessWord = this.currentGuess.getGuessWord();
         for (int i = 0; i < guessWord.length(); i++) {
             if (!code.contains(Integer.toString(i))) {
                 System.out.print(DEFAULT + guessWord.charAt(i) + DEFAULT);
@@ -48,11 +56,13 @@ public class WordleApp {
         }
         System.out.println();
     }
-    
+
     public void setSolved() {
         this.solved = true;
     }
 
+    // MODIFIES: this
+    // EFFECTS: for each guess, assesses whether game is solved, and subtracts a try
     public void runWordle() {
         while (!solved && tries > 0) {
             generateColourCode();
@@ -68,7 +78,7 @@ public class WordleApp {
                 }
             }
 
-            if (greenCount == 5) {
+            if (greenCount == answer.length()) {
                 setSolved();
                 
             }
