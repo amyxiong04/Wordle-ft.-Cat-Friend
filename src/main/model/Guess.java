@@ -32,8 +32,8 @@ public class Guess {
     }
 
     // MODIFIES: this
-    // EFFECTS: Analyzes guess and creates colour code specifying which colour
-    // a character at a specific position must change to
+    // EFFECTS: Analyzes guess and creates colour code specifying characters at
+    //          which positions must change to which colours
     public void analyzeGuess() {
         for (int i = 0; i < targetWord.length(); i++) {
             if (guessword.charAt(i) == targetWord.charAt(i)) {
@@ -55,6 +55,9 @@ public class Guess {
 //        myobj.analyzeGuess();
 //        myobj.getColourCode();
 //    }
+
+
+    //high volume interger set vs low volume. abstraction 7 last vid.
 
 }
 

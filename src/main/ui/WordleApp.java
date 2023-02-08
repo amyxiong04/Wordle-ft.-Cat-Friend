@@ -11,19 +11,31 @@ public class WordleApp {
     public static final String DEFAULT = "\u001B[0m";
     public static final String YELLOW = "\u001B[33m";
     public static final String GREEN = "\u001B[32m";
-    private String[] wordBank = {"HELLO", "SLICE"};
+    private String[] wordBank = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
     private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
 
-    
+
     private int tries;
     private Guess currentGuess;
     private Boolean solved;
 
-    // EFFECTS: creates a wordle game with 6 tries and unsolved state
+    // EFFECTS: creates a Wordle game with 6 tries and unsolved state
     public WordleApp() {
         this.tries = 6;
         this.currentGuess = new Guess("", answer);
         this.solved = false;
+    }
+
+    public String getAnswer() {
+        return this.answer;
+    }
+
+    public Guess getCurrentGuess() {
+        return this.currentGuess;
+    }
+
+    public int getTriesRemaining() {
+        return this.tries;
     }
 
     // REQUIRES: user input is of type string and length > 0
@@ -38,7 +50,7 @@ public class WordleApp {
     }
 
     // MODIFIES: this
-    // EFFECTS : prints out colour-rendered word based on wordle rules
+    // EFFECTS : prints out colour-rendered word based on Wordle rules
     public void interpretColourCode() {
         List<String> code = this.currentGuess.getColourCode();
         //System.out.println(code);
