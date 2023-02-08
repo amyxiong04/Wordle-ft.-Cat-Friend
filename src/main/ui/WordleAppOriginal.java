@@ -2,7 +2,9 @@ package ui;
 
 
 import model.GuessOriginal;
+import model.ListOfGuess;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,12 +19,14 @@ public class WordleAppOriginal {
 
 
     private int tries;
+    private ListOfGuess log;
     private GuessOriginal currentGuess;
     private Boolean solved;
 
     // EFFECTS: creates a Wordle game with 6 tries and unsolved state
     public WordleAppOriginal() {
         this.tries = 6;
+        this.log = new ListOfGuess();
         this.currentGuess = new GuessOriginal("", answer);
         this.solved = false;
     }
@@ -62,6 +66,7 @@ public class WordleAppOriginal {
         System.out.println("Please make a guess >");
         String input = scanner.nextLine().toUpperCase();
         currentGuess = new GuessOriginal(input, answer);
+//        log.addGuessToLog(new GuessOriginal(input, answer));
         return input;
     }
 
@@ -72,13 +77,23 @@ public class WordleAppOriginal {
     public void generateColourCode() {
         currentGuess = new GuessOriginal(getGuessFromUser(), answer);
         currentGuess.analyzeGuess();
+//        log.analyzeLog();
     }
+
+//    public void printLog() {
+//        List<List<String>> locc = log.getListOfColourCode();
+//        for (List<String> cc : locc) {
+//            interpretColourCode(cc);
+//        }
+//
+//    }
 
     // MODIFIES: this
     // EFFECTS : prints out colour-rendered word based on Wordle rules
-    public void interpretColourCode() {
-        List<String> code = this.currentGuess.getColourCode();
+    public void interpretColourCode(List<String> code) {
+//        List<String> code = this.currentGuess.getColourCode();
         String guessWord = this.currentGuess.getGuessWord();
+//        System.out.println(log);
         for (int i = 0; i < guessWord.length(); i++) {
             if (!code.contains(Integer.toString(i))) {
                 System.out.print(DEFAULT + guessWord.charAt(i) + DEFAULT);
@@ -104,6 +119,7 @@ public class WordleAppOriginal {
         sixAttempts();
     }
 
+
     public void sixAttempts() {
 //        if (currentGuess.getGuessWord().length() > 5) {
 //            System.out.println("Your guess is too long.");
@@ -112,8 +128,14 @@ public class WordleAppOriginal {
 //        } else {
         while (!solved && tries > 0) {
             generateColourCode();
-            interpretColourCode();
+     ///       printLog();
+            interpretColourCode(currentGuess.getColourCode());
             tries = tries - 1;
+
+            if (tries == 0 && !solved) {
+                System.out.println();
+                System.out.println("The correct word was: " + answer);
+            }
 
             List<String> code = this.currentGuess.getColourCode();
             int greenCount = 0;

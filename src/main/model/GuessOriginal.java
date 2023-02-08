@@ -47,6 +47,7 @@ public class GuessOriginal {
             }
         }
     }
+}
 
 
 //    public static void main(String[] args) {
@@ -56,7 +57,7 @@ public class GuessOriginal {
 //    }
 
 
-    //high volume interger set vs low volume. abstraction 7 last vid.
+//high volume interger set vs low volume. abstraction 7 last vid.
 
-}
+
 
