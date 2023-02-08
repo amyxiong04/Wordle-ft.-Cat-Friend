@@ -12,11 +12,12 @@ public class Guess {
     private String targetWord;
     private String currentGuess;
     private List<String> colourCode;
-    private String[] wordBank = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
-    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
+//    private String[] wordBank = {"HELLO", "SLICE", "APPLE"};
+//    , "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
+//    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
 
     // EFFECTS: creates a guess with its corresponding colour code and sets answer
-    public Guess(String makeGuess) {
+    public Guess(String makeGuess, String answer) {
         this.currentGuess = makeGuess;
         this.targetWord = answer;
         this.colourCode = new ArrayList<>();
@@ -39,7 +40,10 @@ public class Guess {
         WordleApp wordleApp = new WordleApp();
         String guess = wordleApp.getGuessFromUser();
         this.currentGuess = guess;
+        System.out.println("guess" + guess);
+        System.out.println("target" + targetWord);
         analyzeGuess();
+        System.out.println(colourCode);
     }
 
     // MODIFIES: this
