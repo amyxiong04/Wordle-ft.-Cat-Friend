@@ -2,7 +2,7 @@ package ui;
 
 public class Main {
     public static void main(String[] args) {
-        WordleAppOriginal wordle = new WordleAppOriginal();
+        WordleApp wordle = new WordleApp();
         wordle.runWordle();
     }
 }
