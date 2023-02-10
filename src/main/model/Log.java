@@ -5,32 +5,36 @@ import java.util.ArrayList;
 public class Log {
     private ArrayList<String> log;
     private String result;
-//    private StringBuilder sb;
+    private ArrayList<Guess> guessLog;
+
+    // MODIFIES: this
+    // EFFECTS: adds guess to current list of guesses
+    public void addGuessToLog(Guess g) {
+        guessLog.add(g);
+    }
+
+    public void analyzeListOfGuess() {
+        for (Guess g : guessLog) {
+            g.analyzeGuess();
+        }
+    }
 
     public Log() {
         log = new ArrayList<>();
         result = "";
-//        sb = new StringBuilder();
     }
 
-    public void add(String str){
+    public void add(String str) {
         log.add(str);
     }
 
-    //    public String toString(){
-//        return
-//    }
-    public void iterateLog(){
-//        result = "";
-        for (int i=0; i<log.size(); i++){
-            this.result+=log.get(i);
-            if (i<log.size()-1) {
+    public void iterateLog() {
+        for (int i = 0; i < log.size(); i++) {
+            this.result += log.get(i);
+            if (i < log.size() - 1) {
                 this.result += "_";
             }
         }
-//        for (String e: log) {
-//            System.out.println(e);
-//        }
     }
 
     public String getResult() {
@@ -48,21 +52,10 @@ public class Log {
                 sb.append("|");
             }
         }
-//        sb.append("]");
         return sb.toString();
-//        String forHandleString = sb.toString();
-//        int len = forHandleString.length();
-//        for (int i = 0; i<len;i++) {
-//            System.out.println(forHandleString.charAt(i));
-//            if ((i+1)%9==0) {
-//                System.out.println();
-//            }
-//        }
-//        return sb.toString();
-
     }
 
-    public void formatPrint(){
+    public void formatPrint() {
 //        System.out.println(toString());
 
         String str = toString();

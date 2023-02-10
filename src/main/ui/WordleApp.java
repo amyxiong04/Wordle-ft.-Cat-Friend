@@ -48,7 +48,10 @@ public class WordleApp {
 
     public void provideGameInstructions() {
         System.out.println("Welcome to Wordle (Java-Style)!");
-        System.out.println();
+        System.out.println("Hit enter to continue.");
+        System.out.println("I would like game instructions \n"
+                + "[A] Yes! \n"
+                + "[B] Psh, I'm all good.");
         System.out.println("The aim is to guess a five-letter word in six attempts. You may guess at the correct \n"
                 + "word by typing in a five-letter word and hitting 'Enter.' To guide you towards the target word,\n"
                 + "each time you guess, certain letters will be coloured. A letter coloured in yellow means that \n"
@@ -57,6 +60,12 @@ public class WordleApp {
                 + "word in 6 guesses, the word will be revealed. Good luck!");
     }
 
+    public String processInput(String text) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(text);
+        String input = scanner.nextLine();
+        return input;
+    }
 
     // REQUIRES: user input is of type string and length > 0
     // MODIFIES: this
@@ -128,12 +137,9 @@ public class WordleApp {
             }
             if (greenCount == newGuess.getTargetWord().length()) {
                 setSolved();
-
             }
         }
     }
-
-
 }
 
 
