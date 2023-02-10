@@ -13,18 +13,16 @@ public class WordleApp {
     public static final String GREEN = "\u001B[32m";
     private int tries;
     private Boolean solved;
-    //    private String[] wordBank = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
+//    private String[] wordBank = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
 //    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
-    private String[] wordBank = {"HELLO", "SLICE", "APPLE"};
-//    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
-    private String answer = "HELLO";
+
     private Guess currentGuess;
 
     // EFFECTS: creates a Wordle game with 6 tries and unsolved state
     public WordleApp() {
         this.tries = 6;
         this.solved = false;
-        this.currentGuess = new Guess("", answer);
+        this.currentGuess = new Guess("");
     }
 
 
@@ -56,9 +54,9 @@ public class WordleApp {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please make a guess >");
         String input = scanner.nextLine().toUpperCase();
-        this.currentGuess = new Guess(input, answer);
         return input;
     }
+
 
 
     // MODIFIES: this

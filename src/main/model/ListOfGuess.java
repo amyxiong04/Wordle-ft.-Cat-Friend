@@ -15,7 +15,8 @@
 //
 //    public void addGuessToLog() {
 //        WordleApp wordleApp = new WordleApp();
-//        Guess addNewGuess = new Guess();
+//        String answer = wordleApp.getAnswer();
+//        Guess addNewGuess = wordleApp.getCurrentGuess();
 //        guessLog.add(addNewGuess);
 //
 //    }
