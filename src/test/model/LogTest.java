@@ -12,5 +12,8 @@ public class LogTest {
     }
 
     @Test
+    public void testAnalyzeListOfGuesses() {
+        //stub
+    }
 
 }

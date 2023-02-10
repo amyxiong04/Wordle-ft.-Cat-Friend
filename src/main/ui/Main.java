@@ -5,4 +5,5 @@ public class Main {
         WordleApp wordle = new WordleApp();
         wordle.runWordle();
     }
+
 }
