@@ -26,35 +26,28 @@ public class Guess {
         return this.currentGuess;
     }
 
+    public void setGuessWord(String guess) {
+        this.currentGuess = guess;
+    }
+
     public String getTargetWord() {
         return this.targetWord;
+    }
+
+    public void setTargetWord(String target) {
+        this.targetWord = target;
     }
 
     public List<String> getColourCode() {
         return this.colourCode;
     }
 
-//    public void generateColourCode() {
-//        WordleApp wordleApp = new WordleApp();
-//        String guess = wordleApp.getGuessFromUser();
-//        this.currentGuess = guess;
-//        System.out.println("guess" + guess);
-//        System.out.println("target" + targetWord);
-//        analyzeGuess();
-//        System.out.println(colourCode);
-//    }
 
 
     public void generateColourCode(String guess) {
-//        WordleApp wordleApp = new WordleApp();
-//        String guess = wordleApp.getGuessFromUser();
         colourCode.clear();
         this.currentGuess = guess;
-//        System.out.println("guess" + guess);
-//        System.out.println("target" + targetWord);
-//        System.out.println("this.currentGUess is " + this.currentGuess);
         analyzeGuess();
-//        System.out.println(colourCode);
     }
 
     // MODIFIES: this
@@ -75,6 +68,7 @@ public class Guess {
                 }
             }
         }
+        System.out.println(colourCode);
     }
 }
 
