@@ -1,0 +1,177 @@
+Index: src/test/model/GuessTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\nclass GuessTest {\r\n    private Guess testGuess;\r\n\r\n    @BeforeEach\r\n    public void setUp() {\r\n        testGuess = new Guess(\"\", \"SLICE\");\r\n    }\r\n\r\n    @Test\r\n    public void testConstructor() {\r\n        assertEquals(\"\", testGuess.getGuessWord());\r\n        assertEquals(\"SLICE\", testGuess.getTargetWord());\r\n        assertEquals(0, testGuess.getColourCode().size());\r\n    }\r\n\r\n\r\n    @Test\r\n    public void testGetters() {\r\n        assertEquals(\"\", testGuess.getGuessWord());\r\n        assertEquals(\"SLICE\", testGuess.getTargetWord());\r\n        List<String> colourCode = new ArrayList<>();\r\n        assertEquals(colourCode, testGuess.getColourCode());\r\n    }\r\n\r\n    @Test\r\n    public void testGenerateColourCode() {\r\n        testGuess.generateColourCode(\"GUESS\");\r\n        assertEquals(\"GUESS\", testGuess.getGuessWord());\r\n    }\r\n\r\n    @Test\r\n    public void testAnalyzeGuess() {\r\n        testGuess.setTargetWord(\"SLICE\");\r\n        testGuess.setGuessWord(\"SLICE\");\r\n        testGuess.analyzeGuess();\r\n        ArrayList<String> code = new ArrayList<>();\r\n//        assertEquals(code.addAll(Arrays.asList(\"0\", \"G\", \"1\", \"G\", \"2\", \"G\", \"3\", \"G\", \"4\", \"G\")),\r\n        code.add(\"0\");\r\n        code.add(\"G\");\r\n        code.add(\"1\");\r\n        code.add(\"G\");\r\n        code.add(\"2\");\r\n        code.add(\"G\");\r\n        code.add(\"3\");\r\n        code.add(\"G\");\r\n        code.add(\"4\");\r\n        code.add(\"G\");\r\n        assertEquals(code, testGuess.getColourCode());\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/model/GuessTest.java b/src/test/model/GuessTest.java
+--- a/src/test/model/GuessTest.java	(revision e3ab6bd8e3fa56a79cf5b0a410214e57ca1fa8fe)
++++ b/src/test/model/GuessTest.java	(date 1676050711792)
+@@ -60,4 +60,5 @@
+     }
+ 
+ 
++
+ }
+\ No newline at end of file
+Index: src/main/model/Log.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class Log {\r\n    private ArrayList<String> log;\r\n    private String result;\r\n//    private StringBuilder sb;\r\n\r\n    public Log() {\r\n        log = new ArrayList<>();\r\n        result = \"\";\r\n//        sb = new StringBuilder();\r\n    }\r\n\r\n    public void add(String str){\r\n        log.add(str);\r\n    }\r\n\r\n    //    public String toString(){\r\n//        return\r\n//    }\r\n    public void iterateLog(){\r\n//        result = \"\";\r\n        for (int i=0; i<log.size(); i++){\r\n            this.result+=log.get(i);\r\n            if (i<log.size()-1) {\r\n                this.result += \"_\";\r\n            }\r\n        }\r\n//        for (String e: log) {\r\n//            System.out.println(e);\r\n//        }\r\n    }\r\n\r\n    public String getResult() {\r\n        return this.result;\r\n    }\r\n\r\n\r\n    @Override\r\n    public String toString() {\r\n        StringBuilder sb = new StringBuilder();\r\n//        sb.append(\"[\");\r\n        for (int i = 0; i < log.size(); i++) {\r\n            sb.append(log.get(i));\r\n            if (i < log.size() - 1) {\r\n                sb.append(\"|\");\r\n            }\r\n        }\r\n//        sb.append(\"]\");\r\n        return sb.toString();\r\n//        String forHandleString = sb.toString();\r\n//        int len = forHandleString.length();\r\n//        for (int i = 0; i<len;i++) {\r\n//            System.out.println(forHandleString.charAt(i));\r\n//            if ((i+1)%9==0) {\r\n//                System.out.println();\r\n//            }\r\n//        }\r\n//        return sb.toString();\r\n\r\n    }\r\n\r\n    public void formatPrint(){\r\n//        System.out.println(toString());\r\n\r\n        String str = toString();\r\n//        int len = str.length();\r\n//\r\n//        for (int i = 0; i < len; i++) {\r\n//            System.out.print(str.charAt(i));\r\n//            if ((i + 1) % 5 == 0) {\r\n//                System.out.println();\r\n//            }\r\n//        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/model/Log.java b/src/main/model/Log.java
+--- a/src/main/model/Log.java	(revision e3ab6bd8e3fa56a79cf5b0a410214e57ca1fa8fe)
++++ b/src/main/model/Log.java	(date 1676052149676)
+@@ -5,32 +5,36 @@
+ public class Log {
+     private ArrayList<String> log;
+     private String result;
+-//    private StringBuilder sb;
++    private ArrayList<Guess> guessLog;
++
++    // MODIFIES: this
++    // EFFECTS: adds guess to current list of guesses
++    public void addGuessToLog(Guess g) {
++        guessLog.add(g);
++    }
++
++    public void analyzeListOfGuess() {
++        for (Guess g : guessLog) {
++            g.analyzeGuess();
++        }
++    }
+ 
+     public Log() {
+         log = new ArrayList<>();
+         result = "";
+-//        sb = new StringBuilder();
+     }
+ 
+-    public void add(String str){
++    public void add(String str) {
+         log.add(str);
+     }
+ 
+-    //    public String toString(){
+-//        return
+-//    }
+-    public void iterateLog(){
+-//        result = "";
+-        for (int i=0; i<log.size(); i++){
+-            this.result+=log.get(i);
+-            if (i<log.size()-1) {
++    public void iterateLog() {
++        for (int i = 0; i < log.size(); i++) {
++            this.result += log.get(i);
++            if (i < log.size() - 1) {
+                 this.result += "_";
+             }
+         }
+-//        for (String e: log) {
+-//            System.out.println(e);
+-//        }
+     }
+ 
+     public String getResult() {
+@@ -48,21 +52,10 @@
+                 sb.append("|");
+             }
+         }
+-//        sb.append("]");
+         return sb.toString();
+-//        String forHandleString = sb.toString();
+-//        int len = forHandleString.length();
+-//        for (int i = 0; i<len;i++) {
+-//            System.out.println(forHandleString.charAt(i));
+-//            if ((i+1)%9==0) {
+-//                System.out.println();
+-//            }
+-//        }
+-//        return sb.toString();
+-
+     }
+ 
+-    public void formatPrint(){
++    public void formatPrint() {
+ //        System.out.println(toString());
+ 
+         String str = toString();
+Index: src/main/ui/WordleApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ui;\r\n\r\nimport model.Guess;\r\nimport model.Log;\r\n\r\nimport java.util.List;\r\nimport java.util.Random;\r\nimport java.util.Scanner;\r\n\r\n// Wordle application\r\npublic class WordleApp {\r\n    public static final String DEFAULT = \"\\u001B[0m\";\r\n    public static final String YELLOW = \"\\u001B[33m\";\r\n    public static final String GREEN = \"\\u001B[32m\";\r\n    private int tries;\r\n    private Boolean solved;\r\n    private String[] wordBank = {\"HELLO\", \"SLICE\", \"APPLE\", \"BREAD\", \"MONEY\", \"SPORT\", \"RIVER\", \"PIZZA\"};\r\n    //    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();\r\n//    private String[] wordBank = {\"HELLO\", \"SLICE\", \"APPLE\"};\r\n    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();\r\n    //    private String answer = \"HELLO\";\r\n    private Guess newGuess;\r\n    private int wordLength;\r\n    //private int difficultLevel;\r\n    private Log log;\r\n\r\n    // EFFECTS: creates a Wordle game with 6 tries and unsolved state\r\n    public WordleApp() {\r\n        this.tries = 6;\r\n        this.solved = false;\r\n        this.newGuess = new Guess(\"\", answer);\r\n        this.log = new Log();\r\n        this.wordLength = answer.length();\r\n    }\r\n\r\n//\r\n//    public Guess getCurrentGuess() {\r\n//        return this.getGuessWord();\r\n//    }\r\n\r\n    public int getTriesRemaining() {\r\n        return this.tries;\r\n    }\r\n\r\n    public void setSolved() {\r\n        this.solved = true;\r\n    }\r\n\r\n    public void provideGameInstructions() {\r\n        System.out.println(\"Welcome to Wordle (Java-Style)!\");\r\n        System.out.println();\r\n        System.out.println(\"The aim is to guess a five-letter word in six attempts. You may guess at the correct \\n\"\r\n                + \"word by typing in a five-letter word and hitting 'Enter.' To guide you towards the target word,\\n\"\r\n                + \"each time you guess, certain letters will be coloured. A letter coloured in yellow means that \\n\"\r\n                + \"the letter is in the target word, but in the wrong position. A letter coloured in green indicates \\n\"\r\n                + \"that it is a correct letter and also in the correct position. If you fail to guess the target \\n\"\r\n                + \"word in 6 guesses, the word will be revealed. Good luck!\");\r\n    }\r\n\r\n\r\n    // REQUIRES: user input is of type string and length > 0\r\n    // MODIFIES: this\r\n    // EFFECTS: processes user input\r\n    public String getGuessFromUser() {\r\n        Scanner scanner = new Scanner(System.in);\r\n        System.out.println(\"Please make a guess >\");\r\n        String input = scanner.nextLine().toUpperCase();\r\n\r\n        while (input.length() != wordLength) {\r\n            System.out.println(\"Your guess is not five letters. Please input a five-letter word >\");\r\n            input = scanner.nextLine().toUpperCase();\r\n        }\r\n        return input;\r\n    }\r\n\r\n\r\n    // MODIFIES: this\r\n    // EFFECTS : prints out colour-rendered word based on Wordle rules\r\n    public void interpretColourCode(Log log) {\r\n\r\n        List<String> code = this.newGuess.getColourCode();\r\n\r\n        String guessWord = this.newGuess.getGuessWord();\r\n        for (int i = 0; i < guessWord.length(); i++) {\r\n            if (!code.contains(Integer.toString(i))) {\r\n                String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;\r\n                System.out.print(greyWord);\r\n                log.add(greyWord);\r\n            } else {\r\n                if (code.get(code.indexOf(Integer.toString(i)) + 1) == \"Y\") {\r\n                    String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;\r\n                    System.out.print(yellowWord);\r\n                    log.add(yellowWord);\r\n                }\r\n                if (code.get(code.indexOf(Integer.toString(i)) + 1) == \"G\") {\r\n                    String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;\r\n                    System.out.print(greenWord);\r\n                    log.add(greenWord);\r\n                }\r\n            }\r\n        }\r\n        System.out.println();\r\n        String logOutput = log.toString();\r\n        System.out.println(logOutput);\r\n    }\r\n\r\n\r\n    // move this function to guess\r\n    // MODIFIES: this\r\n    // EFFECTS: for each guess, assesses whether game is solved, and subtracts a try\r\n    public void runWordle() {\r\n        WordleApp wordleApp = new WordleApp();\r\n        provideGameInstructions();\r\n        System.out.println();\r\n        while (!solved && tries > 0) {\r\n            String input = wordleApp.getGuessFromUser();\r\n            newGuess.generateColourCode(input);\r\n            interpretColourCode(this.log);\r\n            tries = tries - 1;\r\n\r\n            List<String> code = newGuess.getColourCode();\r\n            int greenCount = 0;\r\n\r\n            for (String s : code) {\r\n                if (s.equals(\"G\")) {\r\n                    greenCount++;\r\n                }\r\n            }\r\n            if (greenCount == newGuess.getTargetWord().length()) {\r\n                setSolved();\r\n\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/ui/WordleApp.java b/src/main/ui/WordleApp.java
+--- a/src/main/ui/WordleApp.java	(revision e3ab6bd8e3fa56a79cf5b0a410214e57ca1fa8fe)
++++ b/src/main/ui/WordleApp.java	(date 1676053489921)
+@@ -48,7 +48,10 @@
+ 
+     public void provideGameInstructions() {
+         System.out.println("Welcome to Wordle (Java-Style)!");
+-        System.out.println();
++        System.out.println("Hit enter to continue.");
++        System.out.println("I would like game instructions \n"
++                + "[A] Yes! \n"
++                + "[B] Psh, I'm all good.");
+         System.out.println("The aim is to guess a five-letter word in six attempts. You may guess at the correct \n"
+                 + "word by typing in a five-letter word and hitting 'Enter.' To guide you towards the target word,\n"
+                 + "each time you guess, certain letters will be coloured. A letter coloured in yellow means that \n"
+@@ -57,6 +60,12 @@
+                 + "word in 6 guesses, the word will be revealed. Good luck!");
+     }
+ 
++    public String processInput(String text) {
++        Scanner scanner = new Scanner(System.in);
++        System.out.println(text);
++        String input = scanner.nextLine();
++        return input;
++    }
+ 
+     // REQUIRES: user input is of type string and length > 0
+     // MODIFIES: this
+@@ -128,12 +137,9 @@
+             }
+             if (greenCount == newGuess.getTargetWord().length()) {
+                 setSolved();
+-
+             }
+         }
+     }
+-
+-
+ }
+ 
+ 
+Index: src/test/model/GuessLogTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/model/GuessLogTest.java b/src/test/model/LogTest.java
+rename from src/test/model/GuessLogTest.java
+rename to src/test/model/LogTest.java
+--- a/src/test/model/GuessLogTest.java	(revision e3ab6bd8e3fa56a79cf5b0a410214e57ca1fa8fe)
++++ b/src/test/model/LogTest.java	(date 1676050711776)
+@@ -1,4 +1,16 @@
+ package model;
+ 
+-public class GuessLogTest {
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++
++public class LogTest {
++    private Log testGuessLog;
++
++    @BeforeEach
++    public void setUp() {
++        testGuessLog = new Log();
++    }
++
++    @Test
++
+ }
