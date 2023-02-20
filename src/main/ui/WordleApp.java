@@ -47,17 +47,25 @@ public class WordleApp {
     }
 
     public void provideGameInstructions() {
+        String answer = "";
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Wordle (Java-Style)!");
-        System.out.println("Hit enter to continue.");
+        System.out.println("Please hit enter to continue.");
+        answer = scanner.nextLine();
         System.out.println("I would like game instructions \n"
                 + "[A] Yes! \n"
-                + "[B] Psh, I'm all good.");
-        System.out.println("The aim is to guess a five-letter word in six attempts. You may guess at the correct \n"
-                + "word by typing in a five-letter word and hitting 'Enter.' To guide you towards the target word,\n"
-                + "each time you guess, certain letters will be coloured. A letter coloured in yellow means that \n"
-                + "the letter is in the target word, but in the wrong position. A letter coloured in green indicates \n"
-                + "that it is a correct letter and also in the correct position. If you fail to guess the target \n"
-                + "word in 6 guesses, the word will be revealed. Good luck!");
+                + "[B] I'm all good.");
+        if (answer.equals("A")) {
+            System.out.println("Your aim is to guess a five-letter word in six attempts. You may guess at the correct \n"
+                    + "word by typing in a five-letter word and hitting 'Enter.' To guide you towards the target word,\n"
+                    + "each time you guess, certain letters will be coloured. A letter coloured in yellow means that \n"
+                    + "the letter is in the target word, but in the wrong position. A letter coloured in green indicates \n"
+                    + "that it is a correct letter and also in the correct position. If you fail to guess the target \n"
+                    + "word in 6 guesses, the word will be revealed. Good luck!");
+        }
+        if (answer.equals("B")) {
+            System.out.println("Okay ~ let's continue");
+        }
     }
 
     public String processInput(String text) {
