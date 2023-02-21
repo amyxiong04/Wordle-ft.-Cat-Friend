@@ -15,27 +15,20 @@ public class Log {
 
     public void analyzeListOfGuess() {
         for (Guess g : guessLog) {
-            g.analyzeGuess();
+            g.generateColourCode(g.getGuessWord());
         }
     }
 
     public Log() {
         log = new ArrayList<>();
         result = "";
+        guessLog = new ArrayList<>();
     }
 
     public void add(String str) {
         log.add(str);
     }
 
-    public void iterateLog() {
-        for (int i = 0; i < log.size(); i++) {
-            this.result += log.get(i);
-            if (i < log.size() - 1) {
-                this.result += "_";
-            }
-        }
-    }
 
     public String getResult() {
         return this.result;
