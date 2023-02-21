@@ -91,35 +91,35 @@ public class WordleApp {
     }
 
 
-    // MODIFIES: this
-    // EFFECTS : prints out colour-rendered word based on Wordle rules
-    public void interpretColourCode(Log log) {
-
-        List<String> code = this.newGuess.getColourCode();
-
-        String guessWord = this.newGuess.getGuessWord();
-        for (int i = 0; i < guessWord.length(); i++) {
-            if (!code.contains(Integer.toString(i))) {
-                String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;
-                System.out.print(greyWord);
-//                log.add(greyWord);
-            } else {
-                if (code.get(code.indexOf(Integer.toString(i)) + 1) == "Y") {
-                    String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
-                    System.out.print(yellowWord);
-//                    log.add(yellowWord);
-                }
-                if (code.get(code.indexOf(Integer.toString(i)) + 1) == "G") {
-                    String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;
-                    System.out.print(greenWord);
-//                    log.add(greenWord);
-                }
-            }
-        }
-        System.out.println();
-        String logOutput = log.toString();
-        System.out.println(logOutput);
-    }
+//    // MODIFIES: this
+//    // EFFECTS : prints out colour-rendered word based on Wordle rules
+//    public void interpretColourCode(Log log) {
+//
+//        List<String> code = this.newGuess.getColourCode();
+//
+//        String guessWord = this.newGuess.getGuessWord();
+//        for (int i = 0; i < guessWord.length(); i++) {
+//            if (!code.contains(Integer.toString(i))) {
+//                String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;
+//                System.out.print(greyWord);
+////                log.add(greyWord);
+//            } else {
+//                if (code.get(code.indexOf(Integer.toString(i)) + 1) == "Y") {
+//                    String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
+//                    System.out.print(yellowWord);
+////                    log.add(yellowWord);
+//                }
+//                if (code.get(code.indexOf(Integer.toString(i)) + 1) == "G") {
+//                    String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;
+//                    System.out.print(greenWord);
+////                    log.add(greenWord);
+//                }
+//            }
+//        }
+//        System.out.println();
+//        String logOutput = log.toString();
+//        System.out.println(logOutput);
+//    }
 
 
     // move this function to guess
@@ -130,18 +130,10 @@ public class WordleApp {
         provideGameInstructions();
         System.out.println();
         while (!solved && tries > 0) {
+            System.out.println();
             String input = wordleApp.getGuessFromUser();
             this.newGuess = new Guess(input, answer);
-            newGuess.generateColourCode(input);
-            this.log.addGuessToLog(newGuess);
-            this.log.analyzeListOfGuess();
-
-            interpretColourCode(this.log);
-            tries = tries - 1;
-            if (tries == 0) {
-                System.out.println("Sorry, the correct word was " + this.answer);
-            }
-
+            newGuess.analyzeGuess();
             List<String> code = newGuess.getColourCode();
             int greenCount = 0;
 
@@ -150,10 +142,23 @@ public class WordleApp {
                     greenCount++;
                 }
             }
-            if (greenCount == newGuess.getTargetWord().length()) {
+
+            this.log.addGuessToLog(newGuess);
+            this.log.analyzeListOfGuess();
+            this.log.interpretColourCode();
+
+            if (greenCount == answer.length()) {
                 setSolved();
+                System.out.println();
                 System.out.println("Congrats! You guessed the target word.");
             }
+            tries = tries - 1;
+
+            if (tries == 0) {
+                System.out.println();
+                System.out.println("Sorry, the correct word was " + this.answer);
+            }
+
         }
     }
 }

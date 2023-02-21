@@ -1,11 +1,18 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Log {
-    //    private ArrayList<String> log;
-//    private String result;
+    public static final String DEFAULT = "\u001B[0m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String GREEN = "\u001B[32m";
     private ArrayList<Guess> guessLog;
+    private List<List<String>> listOfColourCode;
+
+    public Log() {
+        guessLog = new ArrayList<>();
+    }
 
     // MODIFIES: this
     // EFFECTS: adds guess to current list of guesses
@@ -16,18 +23,40 @@ public class Log {
     public void analyzeListOfGuess() {
         for (Guess g : guessLog) {
             g.generateColourCode(g.getGuessWord());
-            System.out.println(g.getColourCode());
-            System.out.println(g.getGuessWord());
-//            g.getGuessWord();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS : prints out colour-rendered word based on Wordle rules
+    public void interpretColourCode() {
+
+        for (Guess g : guessLog) {
+            g.analyzeGuess();
+            String guessWord = g.getGuessWord();
+            List<String> code = g.getColourCode();
+            System.out.println();
+            for (int i = 0; i < guessWord.length(); i++) {
+                if (!code.contains(Integer.toString(i))) {
+                    String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;
+                    System.out.print(greyWord);
+//                log.add(greyWord);
+                } else {
+                    if (code.get(code.indexOf(Integer.toString(i)) + 1) == "Y") {
+                        String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
+                        System.out.print(yellowWord);
+//                    log.add(yellowWord);
+                    }
+                    if (code.get(code.indexOf(Integer.toString(i)) + 1) == "G") {
+                        String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;
+                        System.out.print(greenWord);
+//                    log.add(greenWord);
+                    }
+                }
+            }
         }
     }
 
 
-    public Log() {
-//        log = new ArrayList<>();
-//        result = "";
-        guessLog = new ArrayList<>();
-    }
 //
 //    public void add(String str) {
 //        log.add(str);
