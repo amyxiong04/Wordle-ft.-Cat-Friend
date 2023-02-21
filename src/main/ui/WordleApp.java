@@ -102,17 +102,17 @@ public class WordleApp {
             if (!code.contains(Integer.toString(i))) {
                 String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;
                 System.out.print(greyWord);
-                log.add(greyWord);
+//                log.add(greyWord);
             } else {
                 if (code.get(code.indexOf(Integer.toString(i)) + 1) == "Y") {
                     String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
                     System.out.print(yellowWord);
-                    log.add(yellowWord);
+//                    log.add(yellowWord);
                 }
                 if (code.get(code.indexOf(Integer.toString(i)) + 1) == "G") {
                     String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;
                     System.out.print(greenWord);
-                    log.add(greenWord);
+//                    log.add(greenWord);
                 }
             }
         }
@@ -134,6 +134,8 @@ public class WordleApp {
             this.newGuess = new Guess(input, answer);
             newGuess.generateColourCode(input);
             this.log.addGuessToLog(newGuess);
+            this.log.analyzeListOfGuess();
+
             interpretColourCode(this.log);
             tries = tries - 1;
             if (tries == 0) {

@@ -68,7 +68,7 @@ public class Guess {
                 }
             }
         }
-        System.out.println(colourCode);
+//        System.out.println(colourCode);
     }
 }
 
