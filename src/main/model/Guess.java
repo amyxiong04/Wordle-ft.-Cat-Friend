@@ -9,10 +9,6 @@ public class Guess {
     private String targetWord;
     private String currentGuess;
     private List<String> colourCode;
-    private String guess;
-//    private String[] wordBank = {"HELLO", "SLICE", "APPLE"};
-//    , "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
-//    private String answer = wordBank[new Random().nextInt(wordBank.length)].toUpperCase();
 
     // EFFECTS: creates a guess with its corresponding colour code and sets answer
     public Guess(String makeGuess, String answer) {
