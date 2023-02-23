@@ -41,10 +41,10 @@ public class WordleApp {
     // MODIFIES: this
     // EFFECTS:
     public void selectAnswer(int i) {
-        String[] wordBankEasy = {"BAT", "DOG", "SEA", "CAT", "BEE", "EYE", "TOP", "HAT"};
-        String[] wordBankMedium = {"MEAT", "BEST"};
+        String[] wordBankEasy = {"BAT", "DOG", "SEA", "CAT", "BEE", "EYE", "TOP", "HAT", "EGG", "SUN", "JOY"};
+        String[] wordBankMedium = {"MEAT", "BEST", "BANK", "CITY", "FISH", "MOON", "STAR", "ROSE", "JUMP"};
         String[] wordBankHard = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
-        String[] wordBankImpossible = {"CHERRY", "ORANGE"};
+        String[] wordBankImpossible = {"CHERRY", "ORANGE", "BANANA", "CANDLE", "DOCTOR", "MOTHER", "KITTEN"};
 
         switch (i) {
             case 1:
@@ -150,6 +150,8 @@ public class WordleApp {
     // EFFECTS: processes user input
     public String getGuessFromUser() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("You have " + tries + " tries left.");
+        System.out.println();
         System.out.println("Please make a guess >");
         String input = scanner.nextLine().toUpperCase();
         this.wordLength = answer.length();
@@ -203,7 +205,7 @@ public class WordleApp {
             }
             tries = tries - 1;
             if (tries == 0 && !solved) {
-                System.out.println("Sorry, the correct word was: " + this.answer + ".");
+                System.out.println("Game over! The correct word was: " + this.answer + ".");
             }
         }
     }

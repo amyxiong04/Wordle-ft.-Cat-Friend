@@ -23,6 +23,10 @@ public class Log {
         this.guessLength = i;
     }
 
+    public int getGuessLength() {
+        return this.guessLength;
+    }
+
     // MODIFIES: this
     // EFFECTS: adds given guess to current list of guesses
     public void addGuessToLog(Guess g) {

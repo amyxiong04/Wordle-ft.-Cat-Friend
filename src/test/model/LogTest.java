@@ -34,6 +34,14 @@ public class LogTest {
         List<String> initialStateOfColouredGuess = new ArrayList<>();
         List<String> colouredGuess = testGuessLog.getColouredGuess();
         assertEquals(initialStateOfColouredGuess, colouredGuess);
+
+        assertEquals(5, testGuessLog.getGuessLength());
+    }
+
+    @Test
+    public void testSetGuessLength() {
+        testGuessLog.setGuessLength(3);
+        assertEquals(3, testGuessLog.getGuessLength());
     }
 
     @Test
@@ -134,12 +142,16 @@ public class LogTest {
 
     }
 
-//    @Test
-//    public void testIsLastCharacter() {
-//        assertTrue(testGuessLog.isLastCharacter(4));
-//        assertTrue(testGuessLog.isLastCharacter(9));
-//        assertFalse(testGuessLog.isLastCharacter(8));
-//        assertFalse(testGuessLog.isLastCharacter(0));
-//    }
+    @Test
+    public void testIsLastCharacter() {
+        assertTrue(testGuessLog.isLastCharacter(4, 5));
+        assertTrue(testGuessLog.isLastCharacter(2, 3));
+        assertTrue(testGuessLog.isLastCharacter(3, 4));
+        assertTrue(testGuessLog.isLastCharacter(5, 6));
+        assertFalse(testGuessLog.isLastCharacter(3, 5));
+        assertFalse(testGuessLog.isLastCharacter(1,3));
+        assertFalse(testGuessLog.isLastCharacter(2, 4));
+        assertFalse(testGuessLog.isLastCharacter(4, 6));
+    }
 
 }
