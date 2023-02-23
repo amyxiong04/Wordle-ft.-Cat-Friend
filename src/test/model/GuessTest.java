@@ -62,6 +62,7 @@ class GuessTest {
     public void testAnalyzeGuessNoGreenNoYellow() {
         testGuess.setTargetWord("MONEY");
         testGuess.setGuessWord("PIZZA");
+        testGuess.analyzeGuess();
         ArrayList<String> code = new ArrayList<>();
         assertEquals(code, testGuess.getColourCode());
     }
@@ -75,6 +76,34 @@ class GuessTest {
         code.add("Y");
         code.add("3");
         code.add("Y");
+        testGuess.analyzeGuess();
+        assertEquals(code, testGuess.getColourCode());
+    }
+
+    @Test
+    public void testAnalyzeGuessOnlyyYellow() {
+        testGuess.setTargetWord("SISCX");
+        testGuess.setGuessWord("RSERS");
+        ArrayList<String> code = new ArrayList<>();
+        code.add("1");
+        code.add("Y");
+        code.add("4");
+        code.add("Y");
+        testGuess.analyzeGuess();
+        System.out.println(testGuess.getColourCode());
+        assertEquals(code, testGuess.getColourCode());
+    }
+
+    @Test
+    public void testAnalyzeGuessBothGreenAndYellow() {
+        testGuess.setTargetWord("SLICE");
+        testGuess.setGuessWord("SUPER");
+        ArrayList<String> code = new ArrayList<>();
+        code.add("0");
+        code.add("G");
+        code.add("3");
+        code.add("Y");
+        testGuess.analyzeGuess();
         assertEquals(code, testGuess.getColourCode());
     }
 

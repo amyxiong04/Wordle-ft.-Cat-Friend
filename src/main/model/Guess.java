@@ -39,7 +39,6 @@ public class Guess {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: clears current colour code and sets current guess to given guess
     public void generateColourCode(String guess) {
@@ -62,12 +61,12 @@ public class Guess {
                 if (currentGuess.charAt(j) == targetWord.charAt(i) && (i != j)) {
                     if (!colourCode.contains(Integer.toString(j))) {
                         colourCode.addAll(Arrays.asList(Integer.toString(j), "Y"));
+
                     }
                 }
             }
         }
     }
 }
-
 
 
