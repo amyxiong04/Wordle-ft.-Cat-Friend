@@ -40,8 +40,10 @@ public class Guess {
 
 
 
+    // MODIFIES: this
+    // EFFECTS: clears current colour code and sets current guess to given guess
     public void generateColourCode(String guess) {
-        colourCode.clear();
+        this.colourCode.clear();
         this.currentGuess = guess;
         analyzeGuess();
     }

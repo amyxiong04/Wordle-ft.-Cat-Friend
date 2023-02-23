@@ -60,6 +60,9 @@ public class Log {
         return toString(renderedGuess);
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes the colour of specific characters in a guess; yellow if only contained in the guess, green
+    // if contained in the guess and also in the correct position
     public void renderGuess(String guessWord, List<String> code, List<String> renderedGuess) {
         for (int i = 0; i < guessWord.length(); i++) {
             if (!code.contains(Integer.toString(i))) {
@@ -81,11 +84,12 @@ public class Log {
         }
     }
 
+    // EFFECTS: inserts pipe delimiter between each character of a guess
     public String toString(List<String> renderedGuess) {
         StringBuilder guessWithDelimiter = new StringBuilder();
         for (int i = 0; i < renderedGuess.size(); i++) {
             guessWithDelimiter.append(renderedGuess.get(i));
-            if (i < renderedGuess.size() && !isLastCharacter(i, guessLength)) {
+            if (!isLastCharacter(i, guessLength)) {
                 guessWithDelimiter.append("|");
             }
             if (isLastCharacter(i, guessLength)) {
@@ -94,6 +98,7 @@ public class Log {
         }
         return guessWithDelimiter.toString();
     }
+
 
     // EFFECTS: returns true if index of given i is last character in guess; false otherwise
     public boolean isLastCharacter(int i, int guessLength) {
