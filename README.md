@@ -18,10 +18,10 @@ aspects that make such games possible.
 
 
 - As a user, I want to be able to select a game-play difficulty level.
-- As a user, I want to be able to input a five-letter word as a guess.
+- As a user, I want to be able to input a guess with the number of characters depending on the difficulty level.
 - As a user, I want to be able to view which letters are correct but not in the right position, which letters are correct and in the correct position, and which letters are not contained in the target word.
 - As a user, I want to be able to view the target word if all guesses fail.
-- As a user, I want to be able to view the number of tries taken to guess the correct word
+- As a user, I want to be able to view the number of tries taken to guess the correct word.
 
 
 

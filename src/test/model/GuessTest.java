@@ -82,13 +82,22 @@ class GuessTest {
 
     @Test
     public void testAnalyzeGuessOnlyyYellow() {
-        testGuess.setTargetWord("SISCX");
-        testGuess.setGuessWord("RSERS");
+//        testGuess.setTargetWord("SISCX");
+//        testGuess.setGuessWord("RSERS");
+        testGuess.setTargetWord("SERIES");
+        testGuess.setGuessWord("TASSLE");
         ArrayList<String> code = new ArrayList<>();
-        code.add("1");
+//        code.add("1");
+//        code.add("Y");
+//        code.add("4");
+//        code.add("Y");
+        code.add("2");
         code.add("Y");
-        code.add("4");
+        code.add("3");
         code.add("Y");
+        code.add("5");
+        code.add("Y");
+
         testGuess.analyzeGuess();
         System.out.println(testGuess.getColourCode());
         assertEquals(code, testGuess.getColourCode());
