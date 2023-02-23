@@ -1,6 +1,6 @@
 # Wordle
 
-This Java application has the functionality to run a word game called Wordle.
+This Java application has the runs a word game called Wordle.
 The aim is to guess a five-letter word in six attempts. Each box can hold one letter,
 and so you guess at the correct word by typing in a five-letter word and hitting 'Enter.'
 To guide you towards the target word, each time you guess, certain letters will be highlighted. 
@@ -17,11 +17,11 @@ aspects that make such games possible.
 ## User Stories
 
 
+- As a user, I want to be able to select a game-play difficulty level.
 - As a user, I want to be able to input a five-letter word as a guess.
-- As a user, I want to be able to add my guess to my list of existing guesses.
 - As a user, I want to be able to view which letters are correct but not in the right position, which letters are correct and in the correct position, and which letters are not contained in the target word.
 - As a user, I want to be able to view the target word if all guesses fail.
-- As a user, I want to be able to view game play statistics.
+- As a user, I want to be able to view the number of tries taken to guess the correct word
 
 
 

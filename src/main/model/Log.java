@@ -6,9 +6,9 @@ import java.util.StringJoiner;
 
 // Represents a log for all previous guesses
 public class Log {
-    private ArrayList<Guess> guessLog;                // list of all previous guesses
-    private ArrayList<String> colouredGuess;          // tracks which characters of a guess
-    // have been altered in colour
+    private ArrayList<Guess> guessLog;              // list of all previous guesses
+    private ArrayList<String> colouredGuess;        // tracks which characters of a guess have been altered in colour
+    private int guessLength;                        // number of characters in each guess
     public static final String DEFAULT = "\u001B[0m";
     public static final String YELLOW = "\u001B[33m";
     public static final String GREEN = "\u001B[32m";
@@ -16,6 +16,11 @@ public class Log {
     public Log() {
         guessLog = new ArrayList<>();
         colouredGuess = new ArrayList<>();
+        guessLength = 5;                    // Initializing guess length
+    }
+
+    public void setGuessLength(int i) {
+        this.guessLength = i;
     }
 
     // MODIFIES: this
@@ -77,22 +82,22 @@ public class Log {
     }
 
     public String toString(List<String> renderedGuess) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder guessWithDelimiter = new StringBuilder();
         for (int i = 0; i < renderedGuess.size(); i++) {
-            sb.append(renderedGuess.get(i));
-            if (i < renderedGuess.size() && !isLastCharacter(i)) {
-                sb.append("|");
+            guessWithDelimiter.append(renderedGuess.get(i));
+            if (i < renderedGuess.size() && !isLastCharacter(i, guessLength)) {
+                guessWithDelimiter.append("|");
             }
-            if (isLastCharacter(i)) {
-                sb.append("\n");
+            if (isLastCharacter(i, guessLength)) {
+                guessWithDelimiter.append("\n");
             }
         }
-        return sb.toString();
+        return guessWithDelimiter.toString();
     }
 
     // EFFECTS: returns true if index of given i is last character in guess; false otherwise
-    public boolean isLastCharacter(int i) {
-        if ((i + 1) % 5 == 0) {
+    public boolean isLastCharacter(int i, int guessLength) {
+        if ((i + 1) % guessLength == 0) {
             return true;
         }
         return false;

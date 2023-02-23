@@ -64,19 +64,8 @@ public class Guess {
                 }
             }
         }
-//        System.out.println(colourCode);
     }
 }
-
-
-//    public static void main(String[] args) {
-//        Guess myobj = new Guess("SLICE");
-//        myobj.analyzeGuess();
-//        myobj.getColourCode();
-//    }
-
-
-//high volume interger set vs low volume. abstraction 7 last vid.
 
 
 
