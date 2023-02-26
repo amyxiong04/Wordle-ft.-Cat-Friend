@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// Represents a single five-letter word guess
+// Represents a guess having a target word, current guess, and colour code
 public class Guess {
     private String targetWord;
     private String currentGuess;
@@ -40,15 +40,15 @@ public class Guess {
 
 
     // MODIFIES: this
-    // EFFECTS: clears current colour code and sets current guess to given guess
+    // EFFECTS: clears current colour code and updates current guess to given guess
     public void generateColourCode(String guess) {
         this.colourCode.clear();
-        this.currentGuess = guess;
+        setGuessWord(guess);
         analyzeGuess();
     }
 
     // MODIFIES: this
-    // EFFECTS: Analyzes guess and creates colour code specifying characters at
+    // EFFECTS: Analyzes guess and updates colour code specifying characters at
     //          which positions must change to which colours
     public void analyzeGuess() {
         for (int i = 0; i < targetWord.length(); i++) {

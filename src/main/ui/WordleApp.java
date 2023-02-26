@@ -16,14 +16,14 @@ public class WordleApp {
     private int wordLength;
     private Log log;
 
-    // EFFECTS: creates a Wordle game with 6 tries and unsolved state
+    // EFFECTS: initializes Wordle game
     public WordleApp() {
-        this.tries = 6;
-        this.solved = false;
-        this.answer = "";
-        this.newGuess = new Guess("", answer);
-        this.wordLength = 5;
-        this.log = new Log();
+        this.tries = 6;                                  // six tries
+        this.solved = false;                             // unsolved state
+        this.answer = "";                                // initial target word
+        this.newGuess = new Guess("", answer); // initial guess
+        this.wordLength = 5;                             // initial word length
+        this.log = new Log();                            // instantiates new guess log
     }
 
     public Guess getCurrentGuess() {
@@ -34,12 +34,14 @@ public class WordleApp {
         return this.tries;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the state of the game to solved
     public void setSolved() {
         this.solved = true;
     }
 
     // MODIFIES: this
-    // EFFECTS:
+    // EFFECTS: selects the appropriate target word with right amount of characters depending on difficulty level
     public void selectAnswer(int i) {
         String[] wordBankEasy = {"BAT", "DOG", "SEA", "CAT", "BEE", "EYE", "TOP", "HAT", "EGG", "SUN", "JOY"};
         String[] wordBankMedium = {"MEAT", "BEST", "BANK", "CITY", "FISH", "MOON", "STAR", "ROSE", "JUMP"};
@@ -63,7 +65,7 @@ public class WordleApp {
 
     }
 
-    // EFFECTS: Prints game instructions into console if selected by user
+    // EFFECTS: prints out game instructions into console if selected by user
     public void provideGameInstructions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + "Welcome to Wordle (Java-Style)!");
@@ -92,16 +94,15 @@ public class WordleApp {
 
     // EFFECTS: returns Wordle game-play instructions
     public String getInstructions() {
-        return "Your aim is to guess a word in six attempts.  \n"
-                + "You may guess at the correct word by typing in your guess and hitting 'Enter.' \n"
-                + "To guide you towards the target word, each time you guess, certain letters will be \n"
-                + "coloured. A letter coloured in yellow means that the letter is in the target word, but \n"
-                + "in the wrong position. A letter coloured in green indicates that it is a correct letter \n"
-                + "and also in the correct position. If you fail to guess the target \n"
+        return "Your aim is to guess a word in six attempts. You may guess at the correct word by typing \n"
+                + "in your guess and hitting 'Enter.' To guide you towards the target word, each time you \n"
+                + "guess, certain letters will be coloured. A letter coloured in yellow means that the letter \n"
+                + "is in the target word, but in the wrong position. A letter coloured in green indicates that \n"
+                + "it is a correct letter and also in the correct position. If you fail to guess the target \n"
                 + "word in 6 guesses, the word will be revealed.";
     }
 
-    // EFFECTS: displays difficulty options in interactive console
+    // EFFECTS: displays difficulty options in console
     public void displayDifficulty() {
         System.out.println();
         System.out.println("Please select a difficulty level: \n"
@@ -121,7 +122,7 @@ public class WordleApp {
         System.out.println("You selected " + mode + " mode.");
     }
 
-    // EFFECTS: allows the user to select a difficulty level
+    // EFFECTS: prompts the user to select a difficulty level
     public void userSelectDifficulty() {
         Scanner scanner = new Scanner(System.in);
         String difficulty = scanner.nextLine();
@@ -145,19 +146,19 @@ public class WordleApp {
     }
 
 
-    // REQUIRES: user input is of type string and length > 0
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: processes user input and reminds user of word length constraints if inputted guess exceeds allowed
+    // number of characters
     public String getGuessFromUser() {
         Scanner scanner = new Scanner(System.in);
+        this.wordLength = answer.length();
         System.out.println("You have " + tries + " tries left.");
         System.out.println();
-        System.out.println("Please make a guess >");
+        System.out.println("Please make a guess containing " + this.wordLength + " characters >");
         String input = scanner.nextLine().toUpperCase();
-        this.wordLength = answer.length();
 
         while (input.length() != this.wordLength || input.isEmpty()) {
-            System.out.println("Please input a guess with " + wordLength + " characters.");
+            System.out.println("Please input a guess with " + wordLength + " characters >");
             input = scanner.nextLine().toUpperCase();
         }
         return input;
@@ -173,7 +174,7 @@ public class WordleApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds current user guess to existing list of guesses and processes/prints list of guesses
+    // EFFECTS: adds current user guess to existing list of guesses and processes list of guesses
     public void updateListOfGuesses() {
         this.log.addGuessToLog(newGuess);
         this.log.analyzeListOfGuess();
@@ -181,9 +182,8 @@ public class WordleApp {
     }
 
 
-    // move this function to guess
     // MODIFIES: this
-    // EFFECTS: for each guess, assesses whether game is solved, and subtracts a try
+    // EFFECTS: processes current guess and assesses whether game is solved, and subtracts a try
     public void runWordle() {
         provideGameInstructions();
         while (!solved && tries > 0) {

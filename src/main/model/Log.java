@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-// Represents a log for all previous guesses
+// Represents a log having a guess log, guess rendered in colour, and guess length
 public class Log {
-    private ArrayList<Guess> guessLog;              // list of all previous guesses
-    private ArrayList<String> colouredGuess;        // tracks which characters of a guess have been altered in colour
-    private int guessLength;                        // number of characters in each guess
     public static final String DEFAULT = "\u001B[0m";
     public static final String YELLOW = "\u001B[33m";
     public static final String GREEN = "\u001B[32m";
+    private ArrayList<Guess> guessLog;              // list of all previous guesses
+    private ArrayList<String> colouredGuess;        // tracks which characters of a guess have been altered in colour
+    private int guessLength;                        // number of characters in each guess
 
+
+    // EFFECTS: guess log
     public Log() {
         guessLog = new ArrayList<>();
         colouredGuess = new ArrayList<>();
@@ -43,8 +45,7 @@ public class Log {
         return this.colouredGuess;
     }
 
-    // EFFECTS: generates a colour code for each user guess preserved
-    // in the guess log (list of guesses)
+    // EFFECTS: generates a colour code for each user guess preserved in the guess log
     public void analyzeListOfGuess() {
         for (Guess g : guessLog) {
             g.generateColourCode(g.getGuessWord());
@@ -52,7 +53,7 @@ public class Log {
     }
 
     // MODIFIES: this
-    // EFFECTS: returns a string representation of the colour-rendered word
+    // EFFECTS: returns a string representation of the colour-rendered word for each guess in the log
     public String interpretColourCode() {
         List<String> renderedGuess = new ArrayList<>();
         for (Guess g : guessLog) {
@@ -66,7 +67,7 @@ public class Log {
 
     // MODIFIES: this
     // EFFECTS: changes the colour of specific characters in a guess; yellow if only contained in the guess, green
-    // if contained in the guess and also in the correct position
+    // if contained in the guess and also in the correct position, default if not in the word
     public void renderGuess(String guessWord, List<String> code, List<String> renderedGuess) {
         for (int i = 0; i < guessWord.length(); i++) {
             if (!code.contains(Integer.toString(i))) {
@@ -88,8 +89,10 @@ public class Log {
         }
     }
 
-    // EFFECTS: inserts pipe delimiter between each character of a guess
+    // EFFECTS: inserts pipe delimiter between each character of a guess for aesthetic purposes
     public String toString(List<String> renderedGuess) {
+        // ATTRIBUTION: string builder technique to add seperators to a string:
+        // https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
         StringBuilder guessWithDelimiter = new StringBuilder();
         for (int i = 0; i < renderedGuess.size(); i++) {
             guessWithDelimiter.append(renderedGuess.get(i));

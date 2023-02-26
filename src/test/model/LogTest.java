@@ -83,23 +83,7 @@ public class LogTest {
         G2code.add("Y");
         G2code.add("3");
         G2code.add("Y");
-    }
-
-    @Test
-    public void testRenderGuess() {
-        List<String> renderedGuess = new ArrayList<>();
-        testGuessLog.renderGuess(G1.getGuessWord(), G1.getColourCode(), renderedGuess);
-        List<String> colouredGuess = testGuessLog.getColouredGuess();
-        colouredGuess.add("grey");
-        colouredGuess.add("grey");
-        colouredGuess.add("grey");
-        colouredGuess.add("yellow");
-        colouredGuess.add("green");
-        assertEquals(colouredGuess, testGuessLog.getColouredGuess());
-
-//        String greyWord = DEFAULT + guessWord.charAt(i) + DEFAULT;
-//        String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
-//        String greenWord = GREEN + guessWord.charAt(i) + DEFAULT;
+        assertEquals(G2code, G2.getColourCode());
     }
 
     @Test
@@ -121,6 +105,19 @@ public class LogTest {
     }
 
     @Test
+    public void testRenderGuess() {
+        List<String> renderedGuess = new ArrayList<>();
+        testGuessLog.renderGuess(G1.getGuessWord(), G1.getColourCode(), renderedGuess);
+        List<String> colouredGuess = testGuessLog.getColouredGuess();
+        colouredGuess.add("grey");
+        colouredGuess.add("grey");
+        colouredGuess.add("grey");
+        colouredGuess.add("yellow");
+        colouredGuess.add("green");
+        assertEquals(colouredGuess, testGuessLog.getColouredGuess());
+    }
+
+    @Test
     public void testToString() {
         List<String> renderedGuess = new ArrayList<>();
         renderedGuess.add(DEFAULT + G1.getGuessWord().charAt(0) + DEFAULT);
@@ -134,11 +131,9 @@ public class LogTest {
                 renderedGuess.get(1) + "|" +
                 renderedGuess.get(2) + "|" +
                 renderedGuess.get(3) + "|" +
-                renderedGuess.get(4);
-        System.out.println(guess);
-        System.out.println(guessWithDelimiter);
+                renderedGuess.get(4) + "\n";
 
-        assertEquals(guess, guess);
+        assertEquals(guess, guessWithDelimiter);
 
     }
 
