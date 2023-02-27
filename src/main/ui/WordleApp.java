@@ -26,14 +26,6 @@ public class WordleApp {
         this.log = new Log();                            // instantiates new guess log
     }
 
-    public Guess getCurrentGuess() {
-        return this.newGuess;
-    }
-
-    public int getTriesRemaining() {
-        return this.tries;
-    }
-
     // MODIFIES: this
     // EFFECTS: sets the state of the game to solved
     public void setSolved() {
@@ -41,7 +33,7 @@ public class WordleApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: selects the appropriate target word with right amount of characters depending on difficulty level
+    // EFFECTS: selects the appropriate target word with correct amount of characters depending on difficulty level
     public void selectAnswer(int i) {
         String[] wordBankEasy = {"BAT", "DOG", "SEA", "CAT", "BEE", "EYE", "TOP", "HAT", "EGG", "SUN", "JOY"};
         String[] wordBankMedium = {"MEAT", "BEST", "BANK", "CITY", "FISH", "MOON", "STAR", "ROSE", "JUMP"};
