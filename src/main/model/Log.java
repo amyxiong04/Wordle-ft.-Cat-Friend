@@ -2,37 +2,30 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
-// Represents a log having a guess log, guess rendered in colour, and guess length
+// Represents a log having a list of guesses, list of colours in a guess, and current guess length
 public class Log {
-    public static final String DEFAULT = "\u001B[0m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String GREEN = "\u001B[32m";
-    private ArrayList<Guess> guessLog;              // list of all previous guesses
-    private ArrayList<String> colouredGuess;        // tracks which characters of a guess have been altered in colour
-    private int guessLength;                        // number of characters in each guess
+    private ArrayList<Guess> guessLog;           // list of all previous guesses
+    private ArrayList<String> colouredGuess;     // tracks which characters of a guess have been altered in colour
+    private int guessLength;                     // number of characters in each guess
+    // ANSI escape codes retrieved from W3schools
+    public static final String DEFAULT = "\033[0m";
+    public static final String YELLOW = "\033[0;33m";
+    public static final String GREEN = "\033[0;32m";
 
 
-    // EFFECTS: guess log
+    // EFFECTS: constructs log with empty list of guesses, empty list of colours, and guess length of 5 characters
     public Log() {
         guessLog = new ArrayList<>();
-        colouredGuess = new ArrayList<>();
-        guessLength = 5;                    // Initializing guess length
+        colouredGuess = new ArrayList<>(); // string representation of colours in a guess; eg. "grey", "yellow", "green"
+        guessLength = 5;                   // initializing guess length
     }
 
-    public void setGuessLength(int i) {
-        this.guessLength = i;
-    }
+    // Getters
 
+    // EFFECTS: returns current guess length
     public int getGuessLength() {
         return this.guessLength;
-    }
-
-    // MODIFIES: this
-    // EFFECTS: adds given guess to current list of guesses
-    public void addGuessToLog(Guess g) {
-        guessLog.add(g);
     }
 
     // EFFECTS: returns current list of guesses
@@ -45,7 +38,20 @@ public class Log {
         return this.colouredGuess;
     }
 
-    // EFFECTS: generates a colour code for each user guess preserved in the guess log
+    // MODIFIES: this
+    // EFFECTS: sets guess length to given integer i
+    public void setGuessLength(int i) {
+        this.guessLength = i;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds given guess to current list of guesses
+    public void addGuessToLog(Guess g) {
+        guessLog.add(g);
+    }
+
+    // EFFECTS: generates a colour code that specifies the position and colour it changes to for any character
+    //          in a guess that changes colour; repeats for each guess contained in the guess log
     public void analyzeListOfGuess() {
         for (Guess g : guessLog) {
             g.generateColourCode(g.getGuessWord());
@@ -66,8 +72,9 @@ public class Log {
     }
 
     // MODIFIES: this
-    // EFFECTS: changes the colour of specific characters in a guess; yellow if only contained in the guess, green
-    // if contained in the guess and also in the correct position, default if not in the word
+    // EFFECTS: changes the colour of specific characters in a guess using ANSI codes;
+    //          keeps track of string representation of the colour at each character of a guess
+    //          in the field colouredGuess
     public void renderGuess(String guessWord, List<String> code, List<String> renderedGuess) {
         for (int i = 0; i < guessWord.length(); i++) {
             if (!code.contains(Integer.toString(i))) {
@@ -89,9 +96,9 @@ public class Log {
         }
     }
 
-    // EFFECTS: inserts pipe delimiter between each character of a guess for aesthetic purposes
+    // EFFECTS: inserts pipe delimiter between each character of a guess for aesthetic and comprehendibility purposes
     public String toString(List<String> renderedGuess) {
-        // ATTRIBUTION: string builder technique to add seperators to a string:
+        // ATTRIBUTION: string builder technique to add separators to a string:
         // https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
         StringBuilder guessWithDelimiter = new StringBuilder();
         for (int i = 0; i < renderedGuess.size(); i++) {
@@ -107,7 +114,8 @@ public class Log {
     }
 
 
-    // EFFECTS: returns true if index of given i is last character in guess; false otherwise
+    // EFFECTS: returns true if index of given i is last character in guess with given guess length,
+    //          false otherwise
     public boolean isLastCharacter(int i, int guessLength) {
         if ((i + 1) % guessLength == 0) {
             return true;

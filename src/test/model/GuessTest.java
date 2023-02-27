@@ -11,20 +11,16 @@ import java.util.List;
 
 class GuessTest {
     private Guess testGuess;
-
     @BeforeEach
     public void setUp() {
         testGuess = new Guess("", "SLICE");
     }
-
     @Test
     public void testConstructor() {
         assertEquals("", testGuess.getGuessWord());
         assertEquals("SLICE", testGuess.getTargetWord());
         assertEquals(0, testGuess.getColourCode().size());
     }
-
-
     @Test
     public void testGetters() {
         assertEquals("", testGuess.getGuessWord());
@@ -32,13 +28,11 @@ class GuessTest {
         List<String> colourCode = new ArrayList<>();
         assertEquals(colourCode, testGuess.getColourCode());
     }
-
     @Test
     public void testGenerateColourCode() {
         testGuess.generateColourCode("GUESS");
         assertEquals("GUESS", testGuess.getGuessWord());
     }
-
     @Test
     public void testAnalyzeGuessAllGreen() {
         testGuess.setTargetWord("SLICE");
@@ -57,7 +51,6 @@ class GuessTest {
         code.add("G");
         assertEquals(code, testGuess.getColourCode());
     }
-
     @Test
     public void testAnalyzeGuessNoGreenNoYellow() {
         testGuess.setTargetWord("MONEY");
@@ -66,7 +59,6 @@ class GuessTest {
         ArrayList<String> code = new ArrayList<>();
         assertEquals(code, testGuess.getColourCode());
     }
-
     @Test
     public void testAnalyzeGuessOnlyYellow() {
         testGuess.setTargetWord("SLICE");
@@ -79,7 +71,6 @@ class GuessTest {
         testGuess.analyzeGuess();
         assertEquals(code, testGuess.getColourCode());
     }
-
     @Test
     public void testAnalyzeGuessOnlyyYellow() {
         testGuess.setTargetWord("SERIES");
@@ -95,7 +86,6 @@ class GuessTest {
         testGuess.analyzeGuess();
         assertEquals(code, testGuess.getColourCode());
     }
-
     @Test
     public void testAnalyzeGuessBothGreenAndYellow() {
         testGuess.setTargetWord("SLICE");
@@ -108,7 +98,4 @@ class GuessTest {
         testGuess.analyzeGuess();
         assertEquals(code, testGuess.getColourCode());
     }
-
-
-
 }

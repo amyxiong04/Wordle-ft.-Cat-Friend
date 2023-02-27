@@ -10,7 +10,8 @@ public class Guess {
     private String currentGuess;
     private List<String> colourCode;
 
-    // EFFECTS: creates a guess with its corresponding colour code and sets answer
+    // EFFECTS: constructs a guess with given input and sets target word to given answer;
+    //          constructs empty colour code
     public Guess(String makeGuess, String answer) {
         this.currentGuess = makeGuess;
         this.targetWord = answer;
@@ -22,20 +23,24 @@ public class Guess {
         return this.currentGuess;
     }
 
-    public void setGuessWord(String guess) {
-        this.currentGuess = guess;
-    }
-
     public String getTargetWord() {
         return this.targetWord;
     }
 
-    public void setTargetWord(String target) {
-        this.targetWord = target;
-    }
-
     public List<String> getColourCode() {
         return this.colourCode;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets current guess to given guess
+    public void setGuessWord(String guess) {
+        this.currentGuess = guess;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets current target word to given target word
+    public void setTargetWord(String target) {
+        this.targetWord = target;
     }
 
 
@@ -48,8 +53,11 @@ public class Guess {
     }
 
     // MODIFIES: this
-    // EFFECTS: Analyzes guess and updates colour code specifying characters at
+    // EFFECTS: updates colour code specifying characters at
     //          which positions must change to which colours
+    //          - green if correct character at correct position
+    //          - yellow if correct character at incorrect position
+    //          - default otherwise
     public void analyzeGuess() {
         for (int i = 0; i < targetWord.length(); i++) {
             if (currentGuess.charAt(i) == targetWord.charAt(i)) {
@@ -61,7 +69,6 @@ public class Guess {
                 if (currentGuess.charAt(j) == targetWord.charAt(i) && (i != j)) {
                     if (!colourCode.contains(Integer.toString(j))) {
                         colourCode.addAll(Arrays.asList(Integer.toString(j), "Y"));
-
                     }
                 }
             }
