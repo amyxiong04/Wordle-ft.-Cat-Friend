@@ -24,6 +24,10 @@ aspects that make such games possible.
   correct and in the correct position, and which letters are not contained in the target word.
 - As a user, I want to be able to view the target word if all guesses fail.
 - As a user, I want to be able to view the number of tries taken to guess the correct word.
+- As a user, when I select the quit option from the application menu, I want to be prompted
+  to save the current state of my guesses and have the option to do so or not
+- As a user, when I start the application, I want to be given the option to load my previous
+  guess state from file and resume my game.
 
 
 
