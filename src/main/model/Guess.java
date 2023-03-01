@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 // Represents a guess having a target word, current guess, and colour code
-public class Guess {
+public class Guess implements Writable {
     private String targetWord;
     private String currentGuess;
     private List<String> colourCode;
@@ -73,6 +77,15 @@ public class Guess {
                 }
             }
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("target word", targetWord);
+        json.put("current guess", currentGuess);
+        json.put("colour code", new JSONArray(colourCode));
+        return json;
     }
 }
 

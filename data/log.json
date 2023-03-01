@@ -1,0 +1,41 @@
+{
+    "guess log": [
+        {
+            "target word": "BREAD",
+            "current guess": "SLICE",
+            "colour code": [
+                "4",
+                "Y"
+            ]
+        },
+        {
+            "target word": "BREAD",
+            "current guess": "APPLE",
+            "colour code": [
+                "4",
+                "Y",
+                "0",
+                "Y"
+            ]
+        }
+    ],
+    "tries remaining": 0,
+    "guess length": 5,
+    "coloured guess": [
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "yellow",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "yellow",
+        "yellow",
+        "grey",
+        "grey",
+        "grey",
+        "yellow"
+    ]
+}

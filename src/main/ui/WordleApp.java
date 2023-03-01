@@ -2,19 +2,26 @@ package ui;
 
 import model.Guess;
 import model.Log;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 // Wordle application
 public class WordleApp {
+    private static final String JSON_STORE = "./data/log.json";
     private int tries;
     private Boolean solved;
     private String answer;
     private Guess newGuess;
     private int wordLength;
     private Log log;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: initializes Wordle game
     public WordleApp() {
@@ -23,7 +30,9 @@ public class WordleApp {
         this.answer = "";                                // initial target word
         this.newGuess = new Guess("", answer); // initial guess
         this.wordLength = 5;                             // initial word length
-        this.log = new Log();                            // instantiates new guess log
+        this.log = new Log();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);// instantiates new guess log
     }
 
     // MODIFIES: this
@@ -61,9 +70,10 @@ public class WordleApp {
     public void provideGameInstructions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + "Welcome to Wordle (Java-Style)!");
-        System.out.println("\n" + "I would like game instructions \n" + "[A] Yes! \n" + "[B] I'm all good.");
+        System.out.println("\n" + "[A] I would like game instructions \n" + "[B] Take me to the game \n"
+                + "[C] Load previous game");
         String answer = scanner.nextLine();
-        while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B")) {
+        while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B") && !answer.equalsIgnoreCase("C")) {
             System.out.println("Please select option A or B.");
             answer = scanner.nextLine();
         }
@@ -79,8 +89,11 @@ public class WordleApp {
             }
         }
         if (answer.equalsIgnoreCase("B")) {
-            System.out.println("Okay, let's continue ~ ");
+            System.out.println("Okay, let's go!");
             displayDifficulty();
+        }
+        if (answer.equalsIgnoreCase("C")) {
+            loadLog();
         }
     }
 
@@ -148,7 +161,6 @@ public class WordleApp {
         System.out.println();
         System.out.println("Please make a guess containing " + this.wordLength + " characters >");
         String input = scanner.nextLine().toUpperCase();
-
         while (input.length() != this.wordLength || input.isEmpty()) {
             System.out.println("Please input a guess with " + wordLength + " characters >");
             input = scanner.nextLine().toUpperCase();
@@ -170,16 +182,15 @@ public class WordleApp {
     public void updateListOfGuesses() {
         this.log.addGuessToLog(newGuess);
         this.log.analyzeListOfGuess();
-        System.out.println(this.log.interpretColourCode());
+        System.out.println(log.interpretColourCode());
     }
 
 
     // MODIFIES: this
-    // EFFECTS: processes current guess and assesses whether game is solved, and subtracts a try
+    // EFFECTS: processes current guess and assesses whether game is solved
     public void runWordle() {
         provideGameInstructions();
         while (!solved && tries > 0) {
-            System.out.println();
             processCurrentUserGuess();
             List<String> code = newGuess.getColourCode();
             int greenCount = 0;
@@ -188,7 +199,6 @@ public class WordleApp {
                     greenCount++;
                 }
             }
-            System.out.println();
             updateListOfGuesses();
             if (greenCount == wordLength) {
                 setSolved();
@@ -199,7 +209,50 @@ public class WordleApp {
             if (tries == 0 && !solved) {
                 System.out.println("Game over! The correct word was: " + this.answer + ".");
             }
+            saveGame();
         }
+        System.out.println("Goodbye!");
+    }
+
+    public void saveGame() {
+        System.out.println("[S] save current game state to file");
+        System.out.println("[Q] quit");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        switch (input.toUpperCase()) {
+            case "S":
+                saveLog();
+                break;
+            case "Q":
+                setSolved();
+                break;
+            default:
+                System.out.println("Please select an existing option.");
+        }
+    }
+
+
+    // EFFECTS: saves the list of guesses to file
+    private void saveLog() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(log);
+            jsonWriter.close();
+            System.out.println("Saved current status to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadLog() {
+        try {
+            log = jsonReader.read();
+            System.out.println(log.interpretColourCode());
+            System.out.println("Loaded guess log from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+
     }
 }
 

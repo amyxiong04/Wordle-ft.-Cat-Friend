@@ -1,13 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a log having a list of guesses, list of colours in a guess, and current guess length
-public class Log {
+public class Log implements Writable {
     private ArrayList<Guess> guessLog;           // list of all previous guesses
     private ArrayList<String> colouredGuess;     // tracks which characters of a guess have been altered in colour
     private int guessLength;                     // number of characters in each guess
+    private int triesRemaining;
     // ANSI escape codes retrieved from W3schools
     public static final String DEFAULT = "\033[0m";
     public static final String YELLOW = "\033[0;33m";
@@ -36,6 +40,10 @@ public class Log {
     // EFFECTS: returns current state of colours in guess
     public List<String> getColouredGuess() {
         return this.colouredGuess;
+    }
+
+    public int getTriesRemaining() {
+        return triesRemaining;
     }
 
     // MODIFIES: this
@@ -96,7 +104,7 @@ public class Log {
         }
     }
 
-    // EFFECTS: inserts pipe delimiter between each character of a guess for aesthetic and comprehendibility purposes
+    // EFFECTS: inserts pipe delimiter between each character of a guess for aesthetic and comprehension purposes
     public String toString(List<String> renderedGuess) {
         // ATTRIBUTION: string builder technique to add separators to a string:
         // https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
@@ -121,6 +129,26 @@ public class Log {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("guess length", guessLength);
+        json.put("coloured guess", new JSONArray(colouredGuess));
+        json.put("tries remaining", triesRemaining);
+        json.put("guess log", guessLogToJson());
+        return json;
+    }
+
+    private JSONArray guessLogToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Guess g: guessLog) {
+            jsonArray.put(g.toJson());
+        }
+
+        return jsonArray;
     }
 }
 
