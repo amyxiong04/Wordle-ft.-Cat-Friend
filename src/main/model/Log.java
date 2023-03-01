@@ -23,6 +23,7 @@ public class Log implements Writable {
         guessLog = new ArrayList<>();
         colouredGuess = new ArrayList<>(); // string representation of colours in a guess; eg. "grey", "yellow", "green"
         guessLength = 5;                   // initializing guess length
+        triesRemaining = 6;
     }
 
     // Getters
@@ -44,6 +45,10 @@ public class Log implements Writable {
 
     public int getTriesRemaining() {
         return triesRemaining;
+    }
+
+    public void updateTries(int t) {
+        triesRemaining = t;
     }
 
     // MODIFIES: this

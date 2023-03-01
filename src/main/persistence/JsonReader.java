@@ -45,7 +45,9 @@ public class JsonReader {
     private Log parseLog(JSONObject jsonObject) {
         int guessLength = (int) jsonObject.get("guess length");
         JSONArray colouredGuess = (JSONArray) jsonObject.get("coloured guess");
+        int triesRemaining = (int) jsonObject.get("tries remaining");
         Log log = new Log();
+        log.updateTries(triesRemaining);
         addGuesses(log, jsonObject);
         return log;
     }

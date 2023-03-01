@@ -1,41 +1,75 @@
 {
     "guess log": [
         {
-            "target word": "BREAD",
-            "current guess": "SLICE",
+            "target word": "MOTHER",
+            "current guess": "CHERRY",
             "colour code": [
+                "1",
+                "Y",
+                "2",
+                "Y",
+                "3",
+                "Y",
                 "4",
                 "Y"
             ]
         },
         {
-            "target word": "BREAD",
-            "current guess": "APPLE",
+            "target word": "MOTHER",
+            "current guess": "APPLES",
             "colour code": [
                 "4",
-                "Y",
-                "0",
+                "G",
+                "4",
+                "G"
+            ]
+        },
+        {
+            "target word": "",
+            "current guess": "",
+            "colour code": []
+        },
+        {
+            "target word": "MOTHER",
+            "current guess": "CAKEYY",
+            "colour code": [
+                "3",
                 "Y"
             ]
         }
     ],
-    "tries remaining": 0,
-    "guess length": 5,
+    "tries remaining": 3,
+    "guess length": 6,
     "coloured guess": [
         "grey",
-        "grey",
-        "grey",
-        "grey",
         "yellow",
-        "grey",
-        "grey",
-        "grey",
-        "grey",
+        "yellow",
         "yellow",
         "yellow",
         "grey",
         "grey",
         "grey",
-        "yellow"
+        "grey",
+        "grey",
+        "green",
+        "grey",
+        "grey",
+        "yellow",
+        "yellow",
+        "yellow",
+        "yellow",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "green",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "yellow",
+        "grey",
+        "grey"
     ]
 }

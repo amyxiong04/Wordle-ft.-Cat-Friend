@@ -156,10 +156,11 @@ public class WordleApp {
     // number of characters
     public String getGuessFromUser() {
         Scanner scanner = new Scanner(System.in);
-        this.wordLength = answer.length();
-        System.out.println("You have " + tries + " tries left.");
+        wordLength = log.getGuessLength(); // length of guess
+        tries = log.getTriesRemaining();
         System.out.println();
-        System.out.println("Please make a guess containing " + this.wordLength + " characters >");
+        System.out.println("You have " + tries + " tries remaining.");
+        System.out.println("Please make a guess containing " + wordLength + " characters >");
         String input = scanner.nextLine().toUpperCase();
         while (input.length() != this.wordLength || input.isEmpty()) {
             System.out.println("Please input a guess with " + wordLength + " characters >");
@@ -190,6 +191,7 @@ public class WordleApp {
     // EFFECTS: processes current guess and assesses whether game is solved
     public void runWordle() {
         provideGameInstructions();
+        tries = log.getTriesRemaining();
         while (!solved && tries > 0) {
             processCurrentUserGuess();
             List<String> code = newGuess.getColourCode();
@@ -203,20 +205,27 @@ public class WordleApp {
             if (greenCount == wordLength) {
                 setSolved();
                 System.out.println("Congrats! You guessed the target word in "
-                        + (7 - this.tries) + " tries.");
+                        + (7 - tries + " tries."));
+                break;
             }
-            tries = tries - 1;
+            updateTriesRemaining();
             if (tries == 0 && !solved) {
                 System.out.println("Game over! The correct word was: " + this.answer + ".");
+                break;
             }
             saveGame();
         }
         System.out.println("Goodbye!");
     }
 
+    public void updateTriesRemaining() {
+        log.updateTries(log.getTriesRemaining() - 1);
+        tries = log.getTriesRemaining();
+    }
+
     public void saveGame() {
-        System.out.println("[S] save current game state to file");
-        System.out.println("[Q] quit");
+        System.out.println("[S] Save game state to file");
+        System.out.println("[Q] Save and quit game");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         switch (input.toUpperCase()) {
@@ -224,6 +233,7 @@ public class WordleApp {
                 saveLog();
                 break;
             case "Q":
+                saveLog();
                 setSolved();
                 break;
             default:
@@ -238,7 +248,7 @@ public class WordleApp {
             jsonWriter.open();
             jsonWriter.write(log);
             jsonWriter.close();
-            System.out.println("Saved current status to " + JSON_STORE);
+            System.out.println("Saved game state to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -247,7 +257,12 @@ public class WordleApp {
     private void loadLog() {
         try {
             log = jsonReader.read();
-            System.out.println(log.interpretColourCode());
+            answer = log.getGuessLog().get(0).getTargetWord();
+            tries = log.getTriesRemaining();
+            int length = log.getGuessLog().get(0).getGuessWord().length(); // length of guess
+            wordLength = length;
+            log.setGuessLength(length);
+            updateListOfGuesses();
             System.out.println("Loaded guess log from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
