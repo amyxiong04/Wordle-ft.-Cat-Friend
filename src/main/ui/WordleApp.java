@@ -70,7 +70,7 @@ public class WordleApp {
     public void provideGameInstructions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + "Welcome to Wordle (Java-Style)!");
-        System.out.println("\n" + "[A] I would like game instructions \n" + "[B] Take me to the game \n"
+        System.out.println("\n" + "[A] I would like game instructions \n" + "[B] No instructions needed \n"
                 + "[C] Load previous game");
         String answer = scanner.nextLine();
         while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B") && !answer.equalsIgnoreCase("C")) {
@@ -258,12 +258,11 @@ public class WordleApp {
         try {
             log = jsonReader.read();
             answer = log.getGuessLog().get(0).getTargetWord();
-            tries = log.getTriesRemaining();
             int length = log.getGuessLog().get(0).getGuessWord().length(); // length of guess
             wordLength = length;
             log.setGuessLength(length);
             updateListOfGuesses();
-            System.out.println("Loaded guess log from " + JSON_STORE);
+            System.out.println("Loaded last game from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }

@@ -1,75 +1,64 @@
 {
     "guess log": [
         {
-            "target word": "MOTHER",
-            "current guess": "CHERRY",
+            "target word": "RIVER",
+            "current guess": "SLICE",
             "colour code": [
-                "1",
-                "Y",
                 "2",
-                "Y",
-                "3",
                 "Y",
                 "4",
                 "Y"
             ]
         },
         {
-            "target word": "MOTHER",
-            "current guess": "APPLES",
+            "target word": "RIVER",
+            "current guess": "APPLE",
             "colour code": [
                 "4",
-                "G",
-                "4",
-                "G"
+                "Y"
             ]
         },
         {
-            "target word": "",
-            "current guess": "",
-            "colour code": []
-        },
-        {
-            "target word": "MOTHER",
-            "current guess": "CAKEYY",
+            "target word": "RIVER",
+            "current guess": "APPLE",
             "colour code": [
-                "3",
+                "4",
                 "Y"
             ]
         }
     ],
     "tries remaining": 3,
-    "guess length": 6,
+    "guess length": 5,
     "coloured guess": [
         "grey",
-        "yellow",
-        "yellow",
-        "yellow",
-        "yellow",
-        "grey",
-        "grey",
-        "grey",
-        "grey",
-        "grey",
-        "green",
-        "grey",
         "grey",
         "yellow",
-        "yellow",
-        "yellow",
+        "grey",
         "yellow",
         "grey",
         "grey",
+        "yellow",
         "grey",
-        "grey",
-        "grey",
-        "green",
+        "yellow",
         "grey",
         "grey",
         "grey",
         "grey",
         "yellow",
         "grey",
-        "grey"
+        "grey",
+        "yellow",
+        "grey",
+        "yellow",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "yellow",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "yellow"
     ]
 }

@@ -38,6 +38,8 @@ class GuessTest {
         testGuess.setTargetWord("SLICE");
         testGuess.setGuessWord("SLICE");
         testGuess.analyzeGuess();
+        assertEquals("SLICE", testGuess.getTargetWord());
+        assertEquals("SLICE", testGuess.getTargetWord());
         ArrayList<String> code = new ArrayList<>();
         code.add("0");
         code.add("G");
