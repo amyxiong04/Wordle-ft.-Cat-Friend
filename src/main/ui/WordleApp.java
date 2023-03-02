@@ -80,10 +80,10 @@ public class WordleApp {
         if (answer.equalsIgnoreCase("A")) {
             System.out.println(getInstructions() + "\n" + "\n" + "[A] I've got it!");
             String gotIt = scanner.nextLine();
-            while (!gotIt.equalsIgnoreCase("A")) {
-                System.out.println("Please select option A to indicate that you've got it.");
-                gotIt = scanner.nextLine();
-            }
+//            while (!gotIt.equalsIgnoreCase("A")) {
+//                System.out.println("Please select option A to indicate that you've got it.");
+//                gotIt = scanner.nextLine();
+//            }
             if (gotIt.equalsIgnoreCase("A")) {
                 displayDifficulty();
             }
@@ -186,12 +186,15 @@ public class WordleApp {
         System.out.println(log.interpretColourCode());
     }
 
+    public void setStage() {
+        provideGameInstructions();
+        tries = log.getTriesRemaining();
+    }
 
     // MODIFIES: this
     // EFFECTS: processes current guess and assesses whether game is solved
     public void runWordle() {
-        provideGameInstructions();
-        tries = log.getTriesRemaining();
+        setStage();
         while (!solved && tries > 0) {
             processCurrentUserGuess();
             List<String> code = newGuess.getColourCode();
@@ -204,8 +207,7 @@ public class WordleApp {
             updateListOfGuesses();
             if (greenCount == wordLength) {
                 setSolved();
-                System.out.println("Congrats! You guessed the target word in "
-                        + (7 - tries + " tries."));
+                System.out.println("Congrats! You guessed the target word in" + (7 - tries + " tries."));
                 break;
             }
             updateTriesRemaining();
@@ -215,7 +217,7 @@ public class WordleApp {
             }
             saveGame();
         }
-        System.out.println("Goodbye!");
+//        System.out.println("Goodbye!");
     }
 
     public void updateTriesRemaining() {
