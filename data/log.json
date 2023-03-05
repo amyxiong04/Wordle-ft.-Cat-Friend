@@ -1,64 +1,73 @@
 {
     "guess log": [
         {
-            "target word": "RIVER",
-            "current guess": "SLICE",
+            "target word": "STAR",
+            "current guess": "BOAR",
+            "colour code": [
+                "2",
+                "G",
+                "3",
+                "G",
+                "2",
+                "G",
+                "3",
+                "G"
+            ]
+        },
+        {
+            "target word": "STAR",
+            "current guess": "BASH",
             "colour code": [
                 "2",
                 "Y",
-                "4",
+                "1",
                 "Y"
             ]
         },
         {
-            "target word": "RIVER",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "Y"
-            ]
+            "target word": "",
+            "current guess": "",
+            "colour code": []
         },
         {
-            "target word": "RIVER",
-            "current guess": "APPLE",
+            "target word": "STAR",
+            "current guess": "ROAR",
             "colour code": [
-                "4",
-                "Y"
+                "2",
+                "G",
+                "3",
+                "G",
+                "0",
+                "Y",
+                "2",
+                "G",
+                "3",
+                "G"
             ]
         }
     ],
     "tries remaining": 3,
-    "guess length": 5,
+    "guess length": 4,
     "coloured guess": [
         "grey",
         "grey",
-        "yellow",
+        "green",
+        "green",
         "grey",
         "yellow",
-        "grey",
-        "grey",
-        "yellow",
-        "grey",
         "yellow",
         "grey",
         "grey",
         "grey",
+        "green",
+        "green",
+        "grey",
+        "yellow",
+        "yellow",
         "grey",
         "yellow",
         "grey",
-        "grey",
-        "yellow",
-        "grey",
-        "yellow",
-        "grey",
-        "grey",
-        "grey",
-        "grey",
-        "yellow",
-        "grey",
-        "grey",
-        "grey",
-        "grey",
-        "yellow"
+        "green",
+        "green"
     ]
 }

@@ -20,14 +20,12 @@ aspects that make such games possible.
 - As a user, I want to be able to select a game-play difficulty level that controls how many characters the target
   word is.
 - As a user, I want to be able to input a guess which is added to my list of previous guesses.
-- As a user, I want to be able to view which letters are correct but not in the right position, which letters are
-  correct and in the correct position, and which letters are not contained in the target word.
-- As a user, I want to be able to view the target word if all guesses fail.
-- As a user, I want to be able to view the number of tries taken to guess the correct word.
-- As a user, when I select the quit option from the application menu, I want to be prompted
-  to save the current state of my guesses and have the option to do so or not
+- As a user, I want to be given the option to receive a hint about the target word.
+- As a user, I want to be given the option the statistics of the game upon guessing the correct word.
+- As a user, when the game is over, regardless if I won or not, I want to be given the option to play again.
+- As a user, I want to be given the option to save, or save and quit from my current game.
 - As a user, when I start the application, I want to be given the option to load my previous
-  guess state from file and resume my game.
+  game state from file and resume my game.
 
 
 

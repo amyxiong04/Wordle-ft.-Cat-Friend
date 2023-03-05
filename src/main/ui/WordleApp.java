@@ -1,5 +1,6 @@
 package ui;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import model.Guess;
 import model.Log;
 import persistence.JsonReader;
@@ -7,6 +8,7 @@ import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -70,7 +72,7 @@ public class WordleApp {
     public void provideGameInstructions() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n" + "Welcome to Wordle (Java-Style)!");
-        System.out.println("\n" + "[A] I would like game instructions \n" + "[B] No instructions needed \n"
+        System.out.println("\n" + "[A] Game instructions \n" + "[B] No instructions needed \n"
                 + "[C] Load previous game");
         String answer = scanner.nextLine();
         while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B") && !answer.equalsIgnoreCase("C")) {
@@ -80,10 +82,6 @@ public class WordleApp {
         if (answer.equalsIgnoreCase("A")) {
             System.out.println(getInstructions() + "\n" + "\n" + "[A] I've got it!");
             String gotIt = scanner.nextLine();
-//            while (!gotIt.equalsIgnoreCase("A")) {
-//                System.out.println("Please select option A to indicate that you've got it.");
-//                gotIt = scanner.nextLine();
-//            }
             if (gotIt.equalsIgnoreCase("A")) {
                 displayDifficulty();
             }
@@ -169,7 +167,6 @@ public class WordleApp {
         return input;
     }
 
-
     // MODIFIES: this
     // EFFECTS: processes most current user guess
     public void processCurrentUserGuess() {
@@ -206,18 +203,41 @@ public class WordleApp {
             }
             updateListOfGuesses();
             if (greenCount == wordLength) {
-                setSolved();
-                System.out.println("Congrats! You guessed the target word in" + (7 - tries + " tries."));
+                wonGame();
                 break;
             }
             updateTriesRemaining();
             if (tries == 0 && !solved) {
-                System.out.println("Game over! The correct word was: " + this.answer + ".");
+                gameOver();
                 break;
             }
-            saveGame();
+            saveGameOrHint();
         }
-//        System.out.println("Goodbye!");
+    }
+
+    public void wonGame() {
+        Scanner scanner = new Scanner(System.in);
+        setSolved();
+        System.out.println("Congrats! You guessed the target word.");
+        System.out.println("[V] View statistics");
+        if (scanner.nextLine().equalsIgnoreCase("V")) {
+            viewStats();
+        }
+    }
+
+    public void gameOver() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Game over! The target word was: " + answer + ".");
+    }
+
+    public void viewStats() {
+        System.out.println("Tries taken: " + (7 - tries));
+        List<String> guesses = new ArrayList<>();
+        for (Guess g : log.getGuessLog()) {
+            guesses.add(g.getGuessWord());
+        }
+        System.out.println("Guesses made: " + guesses);
+        System.out.println("Target word: " + answer);
     }
 
     public void updateTriesRemaining() {
@@ -225,12 +245,20 @@ public class WordleApp {
         tries = log.getTriesRemaining();
     }
 
-    public void saveGame() {
-        System.out.println("[S] Save game state to file");
+    public void saveGameOrHint() {
+        System.out.println("[H] I need a hint");
+        System.out.println("[S] Save game");
         System.out.println("[Q] Save and quit game");
+        System.out.println("[Enter] Continue without saving");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         switch (input.toUpperCase()) {
+            case "C":
+                getGuessFromUser();
+                break;
+            case "H":
+                System.out.println("The word you are looking for begins with " + answer.charAt(0) + ".");
+                break;
             case "S":
                 saveLog();
                 break;
@@ -238,8 +266,6 @@ public class WordleApp {
                 saveLog();
                 setSolved();
                 break;
-            default:
-                System.out.println("Please select an existing option.");
         }
     }
 
