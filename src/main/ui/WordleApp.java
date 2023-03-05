@@ -1,6 +1,5 @@
 package ui;
 
-import jdk.swing.interop.SwingInterOpUtils;
 import model.Guess;
 import model.Log;
 import persistence.JsonReader;
