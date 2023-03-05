@@ -44,9 +44,49 @@
                 "3",
                 "G"
             ]
+        },
+        {
+            "target word": "",
+            "current guess": "",
+            "colour code": []
+        },
+        {
+            "target word": "STAR",
+            "current guess": "STAP",
+            "colour code": [
+                "0",
+                "G",
+                "1",
+                "G",
+                "2",
+                "G",
+                "0",
+                "G",
+                "1",
+                "G",
+                "2",
+                "G"
+            ]
+        },
+        {
+            "target word": "",
+            "current guess": "",
+            "colour code": []
+        },
+        {
+            "target word": "STAR",
+            "current guess": "POAS",
+            "colour code": [
+                "2",
+                "G",
+                "3",
+                "Y",
+                "2",
+                "G"
+            ]
         }
     ],
-    "tries remaining": 3,
+    "tries remaining": 1,
     "guess length": 4,
     "coloured guess": [
         "grey",
@@ -57,6 +97,14 @@
         "yellow",
         "yellow",
         "grey",
+        "yellow",
+        "grey",
+        "green",
+        "green",
+        "green",
+        "green",
+        "green",
+        "grey",
         "grey",
         "grey",
         "green",
@@ -68,6 +116,14 @@
         "yellow",
         "grey",
         "green",
-        "green"
+        "green",
+        "green",
+        "green",
+        "green",
+        "grey",
+        "grey",
+        "grey",
+        "green",
+        "yellow"
     ]
 }

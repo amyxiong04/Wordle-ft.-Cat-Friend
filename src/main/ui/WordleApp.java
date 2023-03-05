@@ -182,6 +182,9 @@ public class WordleApp {
         System.out.println(log.interpretColourCode());
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the stage for new game by providing game instructions and setting tries
+    //          to number of tries remaining in log
     public void setStage() {
         provideGameInstructions();
         tries = log.getTriesRemaining();
@@ -214,6 +217,7 @@ public class WordleApp {
         }
     }
 
+    // EFFECTS: handles a game that has been won
     public void wonGame() {
         Scanner scanner = new Scanner(System.in);
         setSolved();
@@ -224,11 +228,15 @@ public class WordleApp {
         }
     }
 
+    // EFFECTS: handles a game that has not been won
     public void gameOver() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Game over! The target word was: " + answer + ".");
     }
 
+    // EFFECTS: prints out game play statistics upon a won game:
+    //          - number of tries taken to correctly guess the target word
+    //          - a chronological list of all guesses made during the game
+    //          - the target word
     public void viewStats() {
         System.out.println("Tries taken: " + (7 - tries));
         List<String> guesses = new ArrayList<>();
@@ -239,11 +247,15 @@ public class WordleApp {
         System.out.println("Target word: " + answer);
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates the number of tries remaining after each guess
     public void updateTriesRemaining() {
         log.updateTries(log.getTriesRemaining() - 1);
         tries = log.getTriesRemaining();
     }
 
+    // EFFECTS: prints out options that prompt user to either get a hint, save, save and quit
+    //          or continue the game without saving
     public void saveGameOrHint() {
         System.out.println("[H] I need a hint");
         System.out.println("[S] Save game");
@@ -268,8 +280,9 @@ public class WordleApp {
         }
     }
 
-
-    // EFFECTS: saves the list of guesses to file
+    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    //              method name: saveWorkRoom()
+    // EFFECTS: saves the guess log to file
     private void saveLog() {
         try {
             jsonWriter.open();
@@ -281,6 +294,10 @@ public class WordleApp {
         }
     }
 
+    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    //              method name: loadWorkRoom()
+    // MODIFIES: this
+    // EFFECTS: loads guess log from file
     private void loadLog() {
         try {
             log = jsonReader.read();

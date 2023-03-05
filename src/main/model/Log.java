@@ -43,10 +43,13 @@ public class Log implements Writable {
         return this.colouredGuess;
     }
 
+    // EFFECTS: returns number of tries remaining
     public int getTriesRemaining() {
         return triesRemaining;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets tries remaining to given integer t
     public void updateTries(int t) {
         triesRemaining = t;
     }
@@ -137,6 +140,7 @@ public class Log implements Writable {
     }
 
     @Override
+    // EFFECTS: returns guess log as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("guess length", guessLength);
@@ -146,6 +150,9 @@ public class Log implements Writable {
         return json;
     }
 
+    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+    //              method name: thingiesToJson()
+    // EFFECTS: returns guesses in this log as a JSON array
     private JSONArray guessLogToJson() {
         JSONArray jsonArray = new JSONArray();
 

@@ -80,6 +80,7 @@ public class Guess implements Writable {
     }
 
     @Override
+    // EFFECTS: returns guess as a JSON object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("target word", targetWord);
