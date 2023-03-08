@@ -1,129 +1,19 @@
 {
-    "guess log": [
-        {
-            "target word": "STAR",
-            "current guess": "BOAR",
-            "colour code": [
-                "2",
-                "G",
-                "3",
-                "G",
-                "2",
-                "G",
-                "3",
-                "G"
-            ]
-        },
-        {
-            "target word": "STAR",
-            "current guess": "BASH",
-            "colour code": [
-                "2",
-                "Y",
-                "1",
-                "Y"
-            ]
-        },
-        {
-            "target word": "",
-            "current guess": "",
-            "colour code": []
-        },
-        {
-            "target word": "STAR",
-            "current guess": "ROAR",
-            "colour code": [
-                "2",
-                "G",
-                "3",
-                "G",
-                "0",
-                "Y",
-                "2",
-                "G",
-                "3",
-                "G"
-            ]
-        },
-        {
-            "target word": "",
-            "current guess": "",
-            "colour code": []
-        },
-        {
-            "target word": "STAR",
-            "current guess": "STAP",
-            "colour code": [
-                "0",
-                "G",
-                "1",
-                "G",
-                "2",
-                "G",
-                "0",
-                "G",
-                "1",
-                "G",
-                "2",
-                "G"
-            ]
-        },
-        {
-            "target word": "",
-            "current guess": "",
-            "colour code": []
-        },
-        {
-            "target word": "STAR",
-            "current guess": "POAS",
-            "colour code": [
-                "2",
-                "G",
-                "3",
-                "Y",
-                "2",
-                "G"
-            ]
-        }
-    ],
-    "tries remaining": 1,
-    "guess length": 4,
+    "guess log": [{
+        "target word": "PIZZA",
+        "current guess": "SLICE",
+        "colour code": [
+            "2",
+            "Y"
+        ]
+    }],
+    "tries remaining": 5,
+    "guess length": 5,
     "coloured guess": [
         "grey",
         "grey",
-        "green",
-        "green",
-        "grey",
-        "yellow",
         "yellow",
         "grey",
-        "yellow",
-        "grey",
-        "green",
-        "green",
-        "green",
-        "green",
-        "green",
-        "grey",
-        "grey",
-        "grey",
-        "green",
-        "green",
-        "grey",
-        "yellow",
-        "yellow",
-        "grey",
-        "yellow",
-        "grey",
-        "green",
-        "green",
-        "green",
-        "green",
-        "green",
-        "grey",
-        "grey",
-        "grey",
-        "green",
-        "yellow"
+        "grey"
     ]
 }
