@@ -26,7 +26,7 @@ public class WordleApp {
 
     // EFFECTS: initializes Wordle game
     public WordleApp() {
-        this.tries = 6;                                  // six tries
+        this.tries = 6;                                  // initializes six tries
         this.solved = false;                             // unsolved state
         this.answer = "";                                // initial target word
         this.newGuess = new Guess("", answer); // initial guess
