@@ -31,9 +31,9 @@ public class WordleApp {
         this.answer = "";                                // initial target word
         this.newGuess = new Guess("", answer); // initial guess
         this.wordLength = 5;                             // initial word length
-        this.log = new Log();
+        this.log = new Log();                            // instantiates new guess log
         jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);// instantiates new guess log
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
