@@ -100,7 +100,7 @@ public class Log implements Writable {
             } else {
                 if (code.get(code.indexOf(Integer.toString(i)) + 1).equals("Y")) {
                     String yellowWord = YELLOW + guessWord.charAt(i) + DEFAULT;
-                    colouredGuess.add("yellow");
+                    colouredGuess.add("orange");
                     renderedGuess.add(yellowWord);
                 }
                 if (code.get(code.indexOf(Integer.toString(i)) + 1).equals("G")) {

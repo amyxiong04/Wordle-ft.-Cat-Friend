@@ -1,18 +1,65 @@
 {
-    "guess log": [{
-        "target word": "PIZZA",
-        "current guess": "SLICE",
-        "colour code": [
-            "2",
-            "Y"
-        ]
-    }],
-    "tries remaining": 5,
+    "guess log": [
+        {
+            "target word": "SLICE",
+            "current guess": "SPORT",
+            "colour code": [
+                "0",
+                "G",
+                "0",
+                "G"
+            ]
+        },
+        {
+            "target word": "SLICE",
+            "current guess": "SPORT",
+            "colour code": [
+                "0",
+                "G",
+                "0",
+                "G"
+            ]
+        },
+        {
+            "target word": "",
+            "current guess": "",
+            "colour code": []
+        },
+        {
+            "target word": "SLICE",
+            "current guess": "PIZZA",
+            "colour code": [
+                "1",
+                "Y"
+            ]
+        }
+    ],
+    "tries remaining": 3,
     "guess length": 5,
     "coloured guess": [
+        "green",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "green",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "green",
+        "grey",
+        "grey",
+        "grey",
+        "grey",
+        "green",
+        "grey",
+        "grey",
+        "grey",
         "grey",
         "grey",
         "yellow",
+        "grey",
         "grey",
         "grey"
     ]
