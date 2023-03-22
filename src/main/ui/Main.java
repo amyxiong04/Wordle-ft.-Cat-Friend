@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         Boolean userWantsToPlayAgain = null;
         do {
-            WordleAppGraphical wordle = new WordleAppGraphical();
+            WordleApp wordle = new WordleApp();
             wordle.runWordle();
             Scanner scanner = new Scanner(System.in);
             System.out.println();

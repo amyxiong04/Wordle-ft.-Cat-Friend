@@ -207,7 +207,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     // EFFECTS: processes current guess and assesses whether game is solved
     public void runWordle() {
         setStage();
-        while (!solved && tries > 0) {
+        while (!solved && tries != 6) {
             processCurrentUserGuess();
             List<String> code = newGuess.getColourCode();
             int greenCount = 0;
@@ -222,7 +222,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
                 break;
             }
             updateTriesRemaining();
-            if (tries == 0 && !solved) {
+            if (tries == 6 && !solved) {
                 gameOver();
                 break;
             }
@@ -230,15 +230,29 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         }
     }
 
-    // EFFECTS: handles a game that has been won
-    public void wonGame() {
-        Scanner scanner = new Scanner(System.in);
-        setSolved();
-        System.out.println("Congrats! You guessed the target word.");
-        System.out.println("[V] View statistics");
-        if (scanner.nextLine().equalsIgnoreCase("V")) {
-            viewStats();
+//    // EFFECTS: handles a game that has been won
+//    public void wonGame() {
+//        Scanner scanner = new Scanner(System.in);
+//        setSolved();
+//        System.out.println("Congrats! You guessed the target word.");
+//        System.out.println("[V] View statistics");
+//        if (scanner.nextLine().equalsIgnoreCase("V")) {
+//            viewStats();
+//        }
+//    }
+
+    public Boolean wonGame() {
+        List<String> code = newGuess.getColourCode();
+        int greenCount = 0;
+        for (String s : code) {
+            if (s.equals("G")) {
+                greenCount++;
+            }
         }
+        if (greenCount == 5) {
+            return true;
+        }
+        return false;
     }
 
     // EFFECTS: handles a game that has not been won
@@ -393,7 +407,6 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         Log log = new Log();
         log.renderGuess(input, code, new ArrayList<>());
         List<String> colours = log.getColouredGuess();
-//        List<String> colours = newGuess.getColourCode(); //[1, Y, 2, G]
 
         System.out.println("Set colors to " + colours.get(0) + " " + colours.get(1) + " " + colours.get(2) + " " + colours.get(3) + " " + colours.get(4));
         String finalString = (
@@ -403,8 +416,23 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
                         + "<html><font size='5' color=" + colours.get(3) + "> " + input.charAt(3) + "</font> <font            "
                         + "<html><font size='5' color=" + colours.get(4) + "> " + input.charAt(4) + "</font> <font            ");
         tries++;
+        if (wonGame()) {
+            popUpImage();
+//            JOptionPane.showMessageDialog(frame, "You Win!", "Winner winner chicken dinner", JOptionPane.PLAIN_MESSAGE);
+        }
         setNextLabel(finalString);
         userGuess.setText("");
+    }
+
+    public void popUpImage() {
+        JFrame frame = new JFrame("Winner winner chicken dinner!");
+        frame.setSize(500, 300);
+        frame.setLayout(new BorderLayout());
+
+        JLabel label = new JLabel(new ImageIcon("data/winner!.jpg"));
+        frame.add(label, BorderLayout.CENTER);
+
+        frame.setVisible(true);
     }
 
     public void setNextLabel(String string) {
