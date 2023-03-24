@@ -285,6 +285,7 @@ public class WordleApp {
     // EFFECTS: saves the guess log to file
     private void saveLog() {
         try {
+
             jsonWriter.open();
             jsonWriter.write(log);
             jsonWriter.close();

@@ -95,13 +95,13 @@ public class LogTest {
         testGuessLog.interpretColourCode();
         List<String> colouredGuess = testGuessLog.getColouredGuess();
         // For guess: "APPLE"
-        assertEquals("yellow", colouredGuess.get(3));
+        assertEquals("orange", colouredGuess.get(3));
         assertEquals("green", colouredGuess.get(4));
         // For guess: "RIVER"
-        assertEquals("yellow", colouredGuess.get(6));
-        assertEquals("yellow", colouredGuess.get(8));
+        assertEquals("orange", colouredGuess.get(6));
+        assertEquals("orange", colouredGuess.get(8));
         // For guess: "MONEY"
-        assertEquals("yellow", colouredGuess.get(13));
+        assertEquals("orange", colouredGuess.get(13));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class LogTest {
         colouredGuess.add("grey");
         colouredGuess.add("grey");
         colouredGuess.add("grey");
-        colouredGuess.add("yellow");
+        colouredGuess.add("orange");
         colouredGuess.add("green");
         assertEquals(colouredGuess, testGuessLog.getColouredGuess());
     }

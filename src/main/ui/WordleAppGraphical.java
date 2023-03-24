@@ -17,6 +17,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class WordleAppGraphical extends JFrame implements ActionListener {
+    public static final String DEFAULT = "\033[0m";
+    public static final String YELLOW = "\033[0;33m";
+    public static final String GREEN = "\033[0;32m";
     private static final String JSON_STORE = "./data/log.json";
     private int tries;
     private Boolean solved;
@@ -29,8 +32,8 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     private static JPanel panel;
     private static JFrame frame;
-    private static WordPanel[] wordPanelArray;
-    private static UserPanel userPanel;
+//    private static WordPanel[] wordPanelArray;
+//    private static UserPanel userPanel;
 
     private static JLabel title;
     private static JTextField userGuess;
@@ -87,9 +90,10 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         System.out.println("\n" + "[A] Game instructions \n" + "[B] No instructions needed \n"
                 + "[C] Load previous game");
         String answer = scanner.nextLine();
-        while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B") && !answer.equalsIgnoreCase("C")) {
+        while (!answer.equalsIgnoreCase("A") && !answer.equalsIgnoreCase("B")
+                && !answer.equalsIgnoreCase("C")) {
             System.out.println("Please select option A or B.");
-            answer = scanner.nextLine();
+//            answer = scanner.nextLine();
         }
         if (answer.equalsIgnoreCase("A")) {
             System.out.println(getInstructions() + "\n" + "\n" + "[A] I've got it!");
@@ -327,12 +331,24 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     // EFFECTS: loads guess log from file
     private void loadLog() {
         try {
+            tries = 0;
             log = jsonReader.read();
             answer = log.getGuessLog().get(0).getTargetWord();
-            int length = log.getGuessLog().get(0).getGuessWord().length(); // length of guess
-            wordLength = length;
-            log.setGuessLength(length);
-            updateListOfGuesses();
+
+            for (Guess g : log.getGuessLog()) {
+                newGuess = g;
+                newGuess.generateColourCode(newGuess.getGuessWord());
+                List<String> colours = colorGuess(newGuess.getColourCode());
+                String finalString = setColour(colours);
+                tries++;
+                if (wonGame()) {
+                    popUpImage();
+                    userGuess.setVisible(false);
+                }
+                setNextLabel(finalString);
+                userGuess.setText("");
+            }
+            userGuess.setBounds(80, 80 + ((tries) * 25), 80, 25);
             System.out.println("Loaded last game from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
@@ -340,35 +356,29 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
+    public String setColour(List<String> colours) {
+        String finalString = "";
+        for (int i = 0; i < 5; i++) {
+            String input = newGuess.getGuessWord();
+            finalString = finalString + "<html><font size='5' color=" + colours.get(i)
+                    + "> " + input.charAt(i) + "</font> <font";
+        }
+        return finalString;
+    }
 
-        panel = new JPanel();
-        frame = new JFrame();
-        frame.setSize(400, 400);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Wordle");
-        frame.setLocationRelativeTo(null);
-        frame.add(panel);
+    public void runWordleAppGraphical() {
+        setFrame();
+        setTitle();
+        setUserGuess();
 
-        panel.setLayout(null);
-        title = new JLabel("Wordle: ");
-        title.setBounds(10, 20, 80, 25);
-        panel.add(title);
-
-        userGuess = new JTextField();
-        userGuess.addActionListener(new WordleAppGraphical());
-        userGuess.setBounds(40, 80 + (0 * 25), 80, 25);
-        panel.add(userGuess);
-
-        JButton button = new JButton("Make Guess");
-        button.setBounds(100, 20, 120, 25);
-        button.addActionListener(new WordleAppGraphical());
-        panel.add(button);
+        makeGuessButton();
+        saveGameStateButton();
+        loadGameButton();
 
         labels = new JLabel[6];
         for (int i = 0; i < 6; i++) {
             labels[i] = new JLabel("<html><font size='10' color=black> ----- </font> <font");
-            labels[i].setBounds(44, 80 + (i * 25), 80, 25);
+            labels[i].setBounds(80, 80 + (i * 25), 80, 25);
             panel.add(labels[i]);
         }
         frame.setVisible(true);
@@ -376,10 +386,77 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         answer = wordBankHard[new Random().nextInt(wordBankHard.length)].toUpperCase();
     }
 
+    private void setUserGuess() {
+        userGuess = new JTextField();
+        userGuess.setBounds(80, 80 + (0 * 25), 80, 25);
+        panel.add(userGuess);
+    }
+
+    private void setTitle() {
+        panel.setLayout(null);
+        title = new JLabel("Wordle");
+        title.setFont(new Font("Dialog", Font.BOLD, 25));
+        title.setBounds(140, 20, 200, 25);
+        panel.add(title, BorderLayout.CENTER);
+    }
+
+    private void setFrame() {
+        panel = new JPanel();
+        frame = new JFrame();
+        frame.setSize(400, 350);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Wordle");
+        frame.setLocationRelativeTo(null);
+        frame.add(panel);
+    }
+
+    private void makeGuessButton() {
+        JButton button = new JButton("Make Guess");
+        button.setBounds(180, 80, 120, 25);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enterGuess();
+            }
+        });
+        panel.add(button);
+    }
+
+    private void saveGameStateButton() {
+        JTextField textField = new JTextField(20);
+        JButton button = new JButton("Save Game");
+        button.setBounds(180, 170, 120, 25);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Guess guess : log.getGuessLog()) {
+                    System.out.println(guess.getGuessWord());
+                }
+                saveLog();
+                JOptionPane.showMessageDialog(null, "Data saved successfully.");
+            }
+        });
+        panel.add(button);
+
+    }
+
+    private void loadGameButton() {
+        JButton button = new JButton("Load Game");
+        button.setBounds(180, 200, 120, 25);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadLog();
+            }
+        });
+        panel.add(button);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         enterGuess();
     }
+
 
     public void enterGuess() {
         if (userGuess.getText().length() != 5) {
@@ -389,39 +466,49 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     }
 
 
-    public static final String DEFAULT = "\033[0m";
-    public static final String YELLOW = "\033[0;33m";
-    public static final String GREEN = "\033[0;32m";
-
     // MODIFIES: this
     // EFFECTS: processes most current user guess
     public void submitWord() {
-        userGuess.setBounds(40, 80 + ((tries + 1) * 25), 80, 25);
+        userGuess.setBounds(80, 80 + ((tries + 1) * 25), 80, 25);
 
         String input = userGuess.getText().toUpperCase();
         newGuess = new Guess(input, answer);
-        newGuess.analyzeGuess();
-        List<String> code = newGuess.getColourCode();
-        System.out.println(answer);
-        System.out.println(code);
-        Log log = new Log();
-        log.renderGuess(input, code, new ArrayList<>());
-        List<String> colours = log.getColouredGuess();
+        log.addGuessToLog(newGuess);
 
-        System.out.println("Set colors to " + colours.get(0) + " " + colours.get(1) + " " + colours.get(2) + " " + colours.get(3) + " " + colours.get(4));
-        String finalString = (
-                "<html><font size='5' color=" + colours.get(0) + "> " + input.charAt(0) + "</font> <font            "
-                        + "<html><font size='5' color=" + colours.get(1) + "> " + input.charAt(1) + "</font> <font            "
-                        + "<html><font size='5' color=" + colours.get(2) + "> " + input.charAt(2) + "</font> <font            "
-                        + "<html><font size='5' color=" + colours.get(3) + "> " + input.charAt(3) + "</font> <font            "
-                        + "<html><font size='5' color=" + colours.get(4) + "> " + input.charAt(4) + "</font> <font            ");
+        newGuess.analyzeGuess();
+        this.log.analyzeListOfGuess();
+
+        System.out.println(answer);
+        List<String> colours = colorGuess(newGuess.getColourCode());
+
+        System.out.println("Set colors to " + colours.get(0) + " " + colours.get(1) + " " + colours.get(2) + " "
+                + colours.get(3) + " " + colours.get(4));
+        String finalString = setColour(colours);
         tries++;
         if (wonGame()) {
             popUpImage();
-//            JOptionPane.showMessageDialog(frame, "You Win!", "Winner winner chicken dinner", JOptionPane.PLAIN_MESSAGE);
+            userGuess.setVisible(false);
         }
         setNextLabel(finalString);
         userGuess.setText("");
+    }
+
+
+    public List<String> colorGuess(List<String> code) {
+        List<String> colouredGuess = new ArrayList<>();
+        for (int i = 0; i < newGuess.getGuessWord().length(); i++) {
+            if (!code.contains(Integer.toString(i))) {
+                colouredGuess.add("grey");
+            } else {
+                if (code.get(code.indexOf(Integer.toString(i)) + 1).equals("Y")) {
+                    colouredGuess.add("orange");
+                }
+                if (code.get(code.indexOf(Integer.toString(i)) + 1).equals("G")) {
+                    colouredGuess.add("green");
+                }
+            }
+        }
+        return colouredGuess;
     }
 
     public void popUpImage() {
@@ -438,40 +525,4 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     public void setNextLabel(String string) {
         labels[tries - 1].setText(string);
     }
-
-
-//    // MODIFIES: this
-//    // EFFECTS: adds current user guess to existing list of guesses and processes list of guesses
-//    public void updateListOfGuesses() {
-//        this.log.addGuessToLog(newGuess);
-//        this.log.analyzeListOfGuess();
-//        System.out.println(log.interpretColourCode());
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: processes current guess and assesses whether game is solved
-//    public void runWordle() {
-//        setStage();
-//        while (!solved && tries > 0) {
-//            processCurrentUserGuess();
-//            List<String> code = newGuess.getColourCode();
-//            int greenCount = 0;
-//            for (String s : code) {
-//                if (s.equals("G")) {
-//                    greenCount++;
-//                }
-//            }
-//            updateListOfGuesses();
-//            if (greenCount == wordLength) {
-//                wonGame();
-//                break;
-//            }
-//            updateTriesRemaining();
-//            if (tries == 0 && !solved) {
-//                gameOver();
-//                break;
-//            }
-//            saveGameOrHint();
-//        }
-//    }
 }
