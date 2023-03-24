@@ -1,27 +1,23 @@
 {
     "guess log": [
         {
-            "target word": "SLICE",
+            "target word": "PIZZA",
             "current guess": "APPLE",
             "colour code": [
-                "4",
-                "G",
-                "3",
+                "1",
+                "Y",
+                "2",
+                "Y",
+                "0",
                 "Y"
             ]
         },
         {
-            "target word": "SLICE",
-            "current guess": "SLICP",
+            "target word": "PIZZA",
+            "current guess": "SLICE",
             "colour code": [
-                "0",
-                "G",
-                "1",
-                "G",
                 "2",
-                "G",
-                "3",
-                "G"
+                "Y"
             ]
         }
     ],

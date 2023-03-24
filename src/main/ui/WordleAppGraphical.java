@@ -348,7 +348,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
                 setNextLabel(finalString);
                 userGuess.setText("");
             }
-            userGuess.setBounds(80, 80 + ((tries) * 25), 80, 25);
+            userGuess.setBounds(80, 40 + ((tries) * 100), 400, 80);
             System.out.println("Loaded last game from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
@@ -360,7 +360,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         String finalString = "";
         for (int i = 0; i < 5; i++) {
             String input = newGuess.getGuessWord();
-            finalString = finalString + "<html><font size='5' color=" + colours.get(i)
+            finalString = finalString + "<html><font size='70' color=" + colours.get(i)
                     + "> " + input.charAt(i) + "</font> <font";
         }
         return finalString;
@@ -374,11 +374,13 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         makeGuessButton();
         saveGameStateButton();
         loadGameButton();
+        restartGameButton();
 
         labels = new JLabel[6];
         for (int i = 0; i < 6; i++) {
-            labels[i] = new JLabel("<html><font size='10' color=black> ----- </font> <font");
-            labels[i].setBounds(80, 80 + (i * 25), 80, 25);
+            labels[i] = new JLabel("─ ─ ─ ─ ─");
+            labels[i].setBounds(80, 140 + (i * 70), 400, 80);
+            labels[i].setFont(new Font("Dialog", Font.BOLD, 100));
             panel.add(labels[i]);
         }
         frame.setVisible(true);
@@ -388,22 +390,23 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     private void setUserGuess() {
         userGuess = new JTextField();
-        userGuess.setBounds(80, 80 + (0 * 25), 80, 25);
+        userGuess.setBounds(80, 140 + (0 * 25), 390, 60);
+        userGuess.setFont(new Font("Dialog", Font.BOLD, 40));
         panel.add(userGuess);
     }
 
     private void setTitle() {
         panel.setLayout(null);
         title = new JLabel("Wordle");
-        title.setFont(new Font("Dialog", Font.BOLD, 25));
-        title.setBounds(140, 20, 200, 25);
+        title.setFont(new Font("Dialog", Font.BOLD, 50));
+        title.setBounds(140, 20, 200, 70);
         panel.add(title, BorderLayout.CENTER);
     }
 
     private void setFrame() {
         panel = new JPanel();
         frame = new JFrame();
-        frame.setSize(400, 350);
+        frame.setSize(800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Wordle");
         frame.setLocationRelativeTo(null);
@@ -412,7 +415,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     private void makeGuessButton() {
         JButton button = new JButton("Make Guess");
-        button.setBounds(180, 80, 120, 25);
+        button.setBounds(600, 80, 120, 25);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -425,7 +428,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     private void saveGameStateButton() {
         JTextField textField = new JTextField(20);
         JButton button = new JButton("Save Game");
-        button.setBounds(180, 170, 120, 25);
+        button.setBounds(600, 170, 120, 25);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -442,11 +445,24 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     private void loadGameButton() {
         JButton button = new JButton("Load Game");
-        button.setBounds(180, 200, 120, 25);
+        button.setBounds(600, 200, 120, 25);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadLog();
+            }
+        });
+        panel.add(button);
+    }
+
+    private void restartGameButton() {
+        JButton button = new JButton("Restart Game");
+        button.setBounds(600, 120, 120, 25);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WordleAppGraphical newWordle = new WordleAppGraphical();
+                newWordle.runWordleAppGraphical();
             }
         });
         panel.add(button);
@@ -469,7 +485,9 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: processes most current user guess
     public void submitWord() {
-        userGuess.setBounds(80, 80 + ((tries + 1) * 25), 80, 25);
+        userGuess.setFont(new Font("Dialog", Font.BOLD, 40));
+        userGuess.setBounds(80, 140 + ((tries + 1) * 70), 390, 60);
+//        userGuess.setBounds(80, 140 + (0 * 25), 390, 60);
 
         String input = userGuess.getText().toUpperCase();
         newGuess = new Guess(input, answer);
@@ -524,5 +542,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     public void setNextLabel(String string) {
         labels[tries - 1].setText(string);
+        labels[tries - 1].setBounds(80, (85 + (tries - 1) * 60), 400, 100);
+//        labels[i].setBounds(80, 140 + (i * 70), 400, 80);
     }
 }
