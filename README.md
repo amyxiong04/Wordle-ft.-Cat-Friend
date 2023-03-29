@@ -14,7 +14,7 @@ entertainment, or simply those who desire a little more practice with their engl
 and reasoning skills. As an avid word/puzzle game player, I find interest in exploring the technical
 aspects that make such games possible.
 
-## User Stories
+# User Stories
 
 
 - As a user, I want to be able to select a game-play difficulty level that controls how many characters the target
@@ -24,8 +24,21 @@ aspects that make such games possible.
 - As a user, I want to be given the option the statistics of the game upon guessing the correct word.
 - As a user, when the game is over, regardless if I won or not, I want to be given the option to play again.
 - As a user, I want to be given the option to save, or save and quit from my current game.
-- As a user, when I start the application, I want to be given the option to load my previous
+- As a user, I want to be given the option to load my previous
   game state from file and resume my game.
+
+# Instructions for Grader
+
+- You can generate the first required action related to adding a guess to a list of guesses by typing in your guess into the text field and clicking the 'Make Guess' button.
+- You can generate the second required action related to removing all guesses from the list of guesses by clicking the 'Restart Game' button at any time.
+- My visual component is located on the right, with a cat who changes expressions based on whether you win or lose the game.
+- You can save the state of my application by clicking the 'Save Game' button at any time.
+- You can reload the state of my application by clicking the 'Load Game' button at any time.
+
+## Attributions
+- String builder technique to add separators to a string: https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
+- JsonReader and JsonWriter classes (attribution also found in more detail in specification of referenced methods): https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 
 
 

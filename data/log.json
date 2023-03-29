@@ -1,20 +1,26 @@
 {
-    "guess log": [{
-        "target word": "PIZZA",
-        "current guess": "PIZZA",
-        "colour code": [
-            "0",
-            "G",
-            "1",
-            "G",
-            "2",
-            "G",
-            "3",
-            "G",
-            "4",
-            "G"
-        ]
-    }],
+    "guess log": [
+        {
+            "target word": "HELLO",
+            "current guess": "APPLE",
+            "colour code": [
+                "3",
+                "G",
+                "4",
+                "Y"
+            ]
+        },
+        {
+            "target word": "HELLO",
+            "current guess": "SLICE",
+            "colour code": [
+                "4",
+                "Y",
+                "1",
+                "Y"
+            ]
+        }
+    ],
     "tries remaining": 6,
     "guess length": 5,
     "coloured guess": []
