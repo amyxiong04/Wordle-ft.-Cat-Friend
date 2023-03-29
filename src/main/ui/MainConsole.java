@@ -3,7 +3,7 @@ package ui;
 import java.util.Scanner;
 
 // Initializes the console wordle application, allowing the user to play again if they wish
-public class Main {
+public class MainConsole {
     public static void main(String[] args) {
         Boolean userWantsToPlayAgain = null;
         do {

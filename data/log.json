@@ -1,22 +1,20 @@
 {
     "guess log": [
         {
-            "target word": "HELLO",
+            "target word": "BREAD",
             "current guess": "APPLE",
             "colour code": [
-                "3",
-                "G",
                 "4",
+                "Y",
+                "0",
                 "Y"
             ]
         },
         {
-            "target word": "HELLO",
+            "target word": "BREAD",
             "current guess": "SLICE",
             "colour code": [
                 "4",
-                "Y",
-                "1",
                 "Y"
             ]
         }
