@@ -387,6 +387,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         saveGameStateButton();
         loadGameButton();
         restartGameButton();
+        hintButton();
 
         setLabels();
         frame.setVisible(true);
@@ -418,9 +419,6 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         title.setFont(new Font("Dialog", Font.BOLD, 40));
         title.setBounds(100, 30, 500, 70);
 
-        ImageIcon icon = new ImageIcon("data/icon.jpg");
-        frame.setIconImage(icon.getImage());
-
         cat = new JLabel("");
         catReaction("neutralCat");
 
@@ -443,7 +441,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
 
     private void makeGuessButton() {
         JButton button = new JButton("Make Guess");
-        button.setBounds(350, 240, 170, 50);
+        button.setBounds(350, 180, 170, 50);
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -503,7 +501,21 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
                 saveGameStateButton();
                 loadGameButton();
                 restartGameButton();
+                hintButton();
                 setLabels();
+            }
+        });
+        panel.add(button);
+    }
+
+    private void hintButton() {
+        JButton button = new JButton("Hint");
+        button.setBounds(350, 240, 170, 50);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "The word you are looking for begins with "
+                        + answer.charAt(0) + ".");
             }
         });
         panel.add(button);
@@ -529,8 +541,6 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     public void submitWord() {
         userGuess.setFont(new Font("Dialog", Font.BOLD, 30));
         userGuess.setBounds(80, 140 + ((tries + 1) * 60), 240, 40);
-//        labels[tries - 1].setBounds(80, (100 + (tries - 1) * 60), 250, 100);
-//        userGuess.setBounds(80, 140 + (0 * 25), 390, 60);
 
         String input = userGuess.getText().toUpperCase();
         newGuess = new Guess(input, answer);

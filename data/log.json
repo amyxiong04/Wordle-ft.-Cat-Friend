@@ -1,66 +1,20 @@
 {
-    "guess log": [
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        },
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        },
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        },
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        },
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        },
-        {
-            "target word": "SLICE",
-            "current guess": "APPLE",
-            "colour code": [
-                "4",
-                "G",
-                "3",
-                "Y"
-            ]
-        }
-    ],
+    "guess log": [{
+        "target word": "PIZZA",
+        "current guess": "PIZZA",
+        "colour code": [
+            "0",
+            "G",
+            "1",
+            "G",
+            "2",
+            "G",
+            "3",
+            "G",
+            "4",
+            "G"
+        ]
+    }],
     "tries remaining": 6,
     "guess length": 5,
     "coloured guess": []
