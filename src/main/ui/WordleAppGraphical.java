@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Guess;
 import model.Log;
 import persistence.JsonReader;
@@ -9,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 // represents the graphical interface of the Wordle application
-public class WordleAppGraphical extends JFrame implements ActionListener {
+public class WordleAppGraphical extends JFrame implements ActionListener, WindowListener {
     private static final String JSON_STORE = "./data/log.json";
     private int tries;
     private static String answer;
@@ -189,8 +193,10 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         frame = new JFrame();
         frame.setSize(1200, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setTitle("Wordle");
         frame.setLocationRelativeTo(null);
+        frame.addWindowListener(this);
 
         frame.add(panel);
     }
@@ -246,7 +252,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
                 String[] wordBankHard = {"HELLO", "SLICE", "APPLE", "BREAD", "MONEY", "SPORT", "RIVER", "PIZZA"};
                 answer = wordBankHard[new Random().nextInt(wordBankHard.length)].toUpperCase();
                 tries = 0;
-                log.getGuessLog().clear();
+                log.clearLog();
                 panel.removeAll();
                 panel.repaint();
 
@@ -271,7 +277,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         // upon clicking, reveals the first letter of the target word
         button.addActionListener(e -> JOptionPane.showMessageDialog(null,
                 "The word you are looking for begins with "
-                + answer.charAt(0) + "."));
+                        + answer.charAt(0) + "."));
         panel.add(button);
     }
 
@@ -309,11 +315,11 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
         newGuess.analyzeGuess();
         this.log.analyzeListOfGuess();
 
-        System.out.println(answer);
+//        System.out.println(answer);
         List<String> colours = colorGuess(newGuess.getColourCode());
 
-        System.out.println("Set colors to " + colours.get(0) + " " + colours.get(1) + " " + colours.get(2) + " "
-                + colours.get(3) + " " + colours.get(4));
+//        System.out.println("Set colors to " + colours.get(0) + " " + colours.get(1) + " " + colours.get(2) + " "
+//                + colours.get(3) + " " + colours.get(4));
         String finalString = setColour(colours);
         tries++;
         if (wonGame()) {
@@ -388,5 +394,42 @@ public class WordleAppGraphical extends JFrame implements ActionListener {
     public void setNextLabel(String string) {
         labels[tries - 1].setText(string);
         labels[tries - 1].setBounds(80, (100 + (tries - 1) * 60), 250, 100);
+    }
+
+    // EFFECTS: prints description of each logged event to console
+    public void printLog() {
+        EventLog el = EventLog.getInstance();
+        for (Event e : el) {
+            System.out.println(e.getDescription());
+        }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        printLog();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
     }
 }

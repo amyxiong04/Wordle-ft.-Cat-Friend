@@ -35,6 +35,17 @@ aspects that make such games possible.
 - You can save the state of my application by clicking the 'Save Game' button at any time.
 - You can reload the state of my application by clicking the 'Load Game' button at any time.
 
+# Phase 4: Task 2
+Added guess SLICE to guess log. \
+Removed all guesses from guess log. \
+Added guess APPLE to guess log. \
+Added guess SLICE to guess log. \
+Removed all guesses from guess log. \
+Added guess SPORT to guess log. \
+Removed all guesses from guess log. \
+Added guess BEACH to guess log. \
+Added guess RIVER to guess log.
+
 ## Attributions
 - String builder technique to add separators to a string: https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
 - JsonReader and JsonWriter classes (attribution also found in more detail in specification of referenced methods): https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo

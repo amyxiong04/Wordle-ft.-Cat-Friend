@@ -64,6 +64,7 @@ public class Log implements Writable {
     // EFFECTS: adds given guess to current list of guesses
     public void addGuessToLog(Guess g) {
         guessLog.add(g);
+        EventLog.getInstance().logEvent(new Event("Added guess " + g.getGuessWord() + " to guess log."));
     }
 
     // EFFECTS: generates a colour code that specifies the position and colour it changes to for any character
@@ -161,6 +162,13 @@ public class Log implements Writable {
         }
 
         return jsonArray;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: clears current guess log of all guesses
+    public void clearLog() {
+        this.guessLog.clear();
+        EventLog.getInstance().logEvent(new Event("Removed all guesses from guess log."));
     }
 }
 

@@ -1,17 +1,15 @@
 {
     "guess log": [
         {
-            "target word": "BREAD",
+            "target word": "MONEY",
             "current guess": "APPLE",
             "colour code": [
                 "4",
-                "Y",
-                "0",
                 "Y"
             ]
         },
         {
-            "target word": "BREAD",
+            "target word": "MONEY",
             "current guess": "SLICE",
             "colour code": [
                 "4",

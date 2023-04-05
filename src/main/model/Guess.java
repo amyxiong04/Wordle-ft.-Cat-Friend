@@ -67,6 +67,7 @@ public class Guess implements Writable {
             if (currentGuess.charAt(i) == targetWord.charAt(i)) {
                 colourCode.addAll(Arrays.asList(Integer.toString(i), "G"));
             }
+//            EventLog.getInstance().logEvent(new Event("Added code: G"));
         }
         for (int i = 0; i < targetWord.length(); i++) {
             for (int j = 0; j < currentGuess.length(); j++) {
@@ -75,6 +76,7 @@ public class Guess implements Writable {
                         colourCode.addAll(Arrays.asList(Integer.toString(j), "Y"));
                     }
                 }
+//                EventLog.getInstance().logEvent(new Event("Added code: Y"));
             }
         }
     }
