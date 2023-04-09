@@ -46,7 +46,15 @@ Removed all guesses from guess log. \
 Added guess BEACH to guess log. \
 Added guess RIVER to guess log.
 
-## Attributions
+# Phase 4: Task 3
+- implemented singleton design for one instance of log class
+- seperated code into more classes/abstract classes/ interfaces
+- improve error handling by adding exceptions to make program more robust and prevented unexpected behaviour.
+- use interfaces and abstractions to reduce coupling and improve flexibility/maintainability of the code
+- implement design patterns to improve structure of code
+- eliminate code duplication
+
+# Attributions
 - String builder technique to add separators to a string: https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
 - JsonReader and JsonWriter classes (attribution also found in more detail in specification of referenced methods): https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
