@@ -36,15 +36,26 @@ aspects that make such games possible.
 - You can reload the state of my application by clicking the 'Load Game' button at any time.
 
 # Phase 4: Task 2
-Added guess SLICE to guess log. \
-Removed all guesses from guess log. \
-Added guess APPLE to guess log. \
-Added guess SLICE to guess log. \
-Removed all guesses from guess log. \
-Added guess SPORT to guess log. \
-Removed all guesses from guess log. \
-Added guess BEACH to guess log. \
+Mon Apr 10 15:51:18 PDT 2023 \
+Added guess PIZZA to guess log.
+
+Mon Apr 10 15:51:20 PDT 2023 \
+Added guess SLICE to guess log.
+
+Mon Apr 10 15:51:21 PDT 2023 \
+Removed all guesses from guess log.
+
+Mon Apr 10 15:51:23 PDT 2023 \
+Added guess APPLE to guess log.
+
+Mon Apr 10 15:51:27 PDT 2023 \
 Added guess RIVER to guess log.
+
+Mon Apr 10 15:51:28 PDT 2023 \
+Removed all guesses from guess log.
+
+Mon Apr 10 15:51:33 PDT 2023 \
+Added guess APPLE to guess log.
 
 # Phase 4: Task 3
 - implemented singleton design for one instance of log class

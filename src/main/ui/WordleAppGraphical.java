@@ -400,6 +400,8 @@ public class WordleAppGraphical extends JFrame implements ActionListener, Window
     public void printLog() {
         EventLog el = EventLog.getInstance();
         for (Event e : el) {
+            System.out.println();
+            System.out.println(e.getDate());
             System.out.println(e.getDescription());
         }
     }
