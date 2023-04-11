@@ -1,6 +1,6 @@
 # Wordle
 
-This Java application has the runs a word game called Wordle.
+This Java application runs a word game called Wordle.
 The aim is to guess a five-letter word in six attempts. Each box can hold one letter,
 and so you guess at the correct word by typing in a five-letter word and hitting the Enter key.
 To guide you towards the target word, each time you guess, certain letters will be highlighted. 
