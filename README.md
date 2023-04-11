@@ -58,32 +58,28 @@ Mon Apr 10 15:51:33 PDT 2023 \
 Added guess APPLE to guess log.
 
 # Phase 4: Task 3
-Through examining the design presented in my UML class diagram for this project,
-I notice that there is a bit of cross-over between association arrows as both the classes
+When examining the design presented in my UML class diagram for my application,
+I notice that there is some cross-over between association arrows as both the classes
 WordleApp and WordleAppGraphical are associated with the same classes. This design appears
-to be redundant, and could be improved by creating a super-class for which both WordleApp and 
-WordleAppGraphical could extend and inherit methods from. 
+to be redundant, and could be improved by creating interfaces and abstractions to reduce coupling
+and improve flexibility/maintainability of the code. This would allow both the WordleApp and 
+WordleAppGraphical classes to extend one class and inherit its fields and methods rather than 
+being associated to several of the same classes. Furthermore, since my project involves a collection of elements (guesses) and the goal is to operate on the collection
+by printing each element while iterating over it, the design could be refactored to implement the
+iterator pattern. In this project, the Log class would be the iterable, providing a way to access each
+of the guesses sequentially without exposing all of its underlying implementation.
 
-As well, if given more time to work on the project, I would have liked to increase
-the robustness of the entire program by injecting exceptions into my code. This would also
-prevent unexpected behaviour. 
-
-I believe the cohesion of my current code can also be significantly improved, as a select few
+As well, I believe the cohesion of my current code can also be significantly improved, as a select few
 of my classes are quite large and cover a significant range of methods. This could result in confusion
-over the purpose of certain functions. To resolve this design issue, I would consider breaking up my code
-into more classes, such that the purpose of methods within each class are much more related
-and that relation between each of the seperated classes is further coupled. In particular, given more time, 
-I would construct a class solely for one character of one guess, allowing me to analyze the colour
-of a singular letter before introducing it to the string of letters in a guess, and finally
-the list of guesses in the guess log.
+over the purpose of certain functions. To increase cohesion and reduce coupling throughout the code,
+I would consider breaking up my code into more classes, such that the purpose of methods within each class
+are more closely related and that relation between each of the separated classes is more distantly related.
+In particular, given more time, I would construct a class solely for one character of one guess,
+allowing me to analyze the colour of a singular letter before introducing it to the string of letters
+in a guess, and finally the list of all guesses in the guess log.
 
 
-- implemented singleton design for one instance of log class
-- seperated code into more classes/abstract classes/ interfaces
-- improve error handling by adding exceptions to make program more robust and prevented unexpected behaviour.
-- use interfaces and abstractions to reduce coupling and improve flexibility/maintainability of the code
-- implement design patterns to improve structure of code
-- eliminate code duplication
+
 
 # Attributions
 - String builder technique to add separators to a string: https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
@@ -92,6 +88,3 @@ the list of guesses in the guess log.
 
 
 
-Add a section at the end of your README.md file entitled "Phase 4: Task 3".  Reflect on the design presented in your UML class diagram.  If you had more time to work on the project, what substantive refactoring might you use to improve your design?  In 1-2 paragraphs in this section of your README, describe the refactoring you are imagining and your reasons for it.  You do NOT need to perform the refactoring - just identify the changes you would make if you had more time.  Keep in mind that refactoring does not mean adding more features to your application.
-
-(Everyone can find some refactoring. If you believe there's no refactoring that could improve your design: Check again; there is! Even if you still think there's nothing, there are tradeoffs you made that could be made differently via a refactoring. Choose one, follow the description above, but emphasize the advantages and disadvantages of the proposed refactoring.) 
