@@ -59,12 +59,13 @@ Added guess APPLE to guess log.
 
 # Phase 4: Task 3
 When examining the design presented in my UML class diagram for my application,
-I notice that there is some cross-over between association arrows as both the classes
+I notice that there is some cross-over between association arrows as both the UI classes
 WordleApp and WordleAppGraphical are associated with the same classes. This design appears
 to be redundant, and could be improved by creating interfaces and abstractions to reduce coupling
 and improve flexibility/maintainability of the code. This would allow both the WordleApp and 
 WordleAppGraphical classes to extend one class and inherit its fields and methods rather than 
-being associated to several of the same classes. Furthermore, since my project involves a collection of elements (guesses) and the goal is to operate on the collection
+being associated to several of the same classes. This type of refactoring could also make it easier
+to maintain two separate UIs simultaneously. Furthermore, since my project involves a collection of elements (guesses) and the goal is to operate on the collection
 by printing each element while iterating over it, the design could be refactored to implement the
 iterator pattern. In this project, the Log class would be the iterable, providing a way to access each
 of the guesses sequentially without exposing all of its underlying implementation.
