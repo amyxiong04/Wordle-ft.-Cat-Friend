@@ -396,7 +396,7 @@ public class WordleAppGraphical extends JFrame implements ActionListener, Window
         labels[tries - 1].setBounds(80, (100 + (tries - 1) * 60), 250, 100);
     }
 
-    // EFFECTS: prints description of each logged event to console
+    // EFFECTS: prints description and date of each logged event to console
     public void printLog() {
         EventLog el = EventLog.getInstance();
         for (Event e : el) {
@@ -406,31 +406,38 @@ public class WordleAppGraphical extends JFrame implements ActionListener, Window
         }
     }
 
+    // EFFECTS: responds to event of opening a window
     @Override
     public void windowOpened(WindowEvent e) {
     }
 
+    // EFFECTS: responds to event of closing a window
     @Override
     public void windowClosing(WindowEvent e) {
         printLog();
     }
 
+    // EFFECTS: responds to event of closed window
     @Override
     public void windowClosed(WindowEvent e) {
     }
 
+    // EFFECTS: responds to event of iconified window
     @Override
     public void windowIconified(WindowEvent e) {
     }
 
+    // EFFECTS: responds to event of deiconified window
     @Override
     public void windowDeiconified(WindowEvent e) {
     }
 
+    // EFFECTS: responds to event of activating a window
     @Override
     public void windowActivated(WindowEvent e) {
     }
 
+    // EFFECTS: responds to event of deactivating a window
     @Override
     public void windowDeactivated(WindowEvent e) {
     }
