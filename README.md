@@ -27,7 +27,7 @@ aspects that make such games possible.
 - As a user, I want to be given the option to load my previous
   game state from file and resume my game.
 
-# Instructions for Grader
+# Instructions for User
 
 - You can generate the first required action related to adding a guess to a list of guesses by typing in your guess into the text field and clicking the 'Make Guess' button.
 - You can generate the second required action related to removing all guesses from the list of guesses by clicking the 'Restart Game' button at any time.
@@ -35,7 +35,7 @@ aspects that make such games possible.
 - You can save the state of my application by clicking the 'Save Game' button at any time.
 - You can reload the state of my application by clicking the 'Load Game' button at any time.
 
-# Phase 4: Task 2
+# Event Logging
 Mon Apr 10 15:51:18 PDT 2023 \
 Added guess PIZZA to guess log.
 
@@ -57,7 +57,7 @@ Removed all guesses from guess log.
 Mon Apr 10 15:51:33 PDT 2023 \
 Added guess APPLE to guess log.
 
-# Phase 4: Task 3
+# Design Analysis
 When examining the design presented in my UML class diagram for my application,
 I notice that there is some cross-over between association arrows as both the UI classes
 WordleApp and WordleAppGraphical are associated with the same classes. This design appears
@@ -75,7 +75,7 @@ of my classes are quite large and cover a significant range of methods. This cou
 over the purpose of certain functions. To increase cohesion and reduce coupling throughout the code,
 I would consider breaking up my code into more classes, such that the purpose of methods within each class
 are more closely related and that relation between each of the separated classes is more distantly related.
-In particular, given more time, I would construct a class solely for one character of one guess,
+In particular, I would construct a class solely for one character of one guess,
 allowing me to analyze the colour of a singular letter before introducing it to the string of letters
 in a guess, and finally the list of all guesses in the guess log.
 
