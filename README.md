@@ -7,12 +7,12 @@ To guide you towards the target word, each time you guess, certain letters will 
 A letter coloured in yellow means that the letter is in the target word, but in the wrong 
 position. A letter coloured in green indicates that it is a correct letter and also in the correct
 position. Letters may be used twice or thrice in a word. If you fail 
-to guess the target word in six tries, the answer will be revealed to you. 
+to guess the target word in six tries, the answer will be revealed to you. To accompany your journey, a large cat friend
+changes its expression based on how well you are performing:)
 
 The target audience of this application is any user who is looking for brain stimulating
 entertainment, or simply those who desire a little more practice with their english vocabulary
-and reasoning skills. As an avid word/puzzle game player, I find interest in exploring the technical
-aspects that make such games possible.
+and reasoning skills. 
 
 # User Stories
 
