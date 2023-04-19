@@ -61,8 +61,6 @@ public class WordleAppGraphical extends JFrame implements ActionListener, Window
         return greenCount == 5;
     }
 
-    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-    //              method name: saveWorkRoom()
     // EFFECTS: saves the guess log to file
     private void saveLog() {
         try {
@@ -75,8 +73,6 @@ public class WordleAppGraphical extends JFrame implements ActionListener, Window
         }
     }
 
-    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-    //              method name: loadWorkRoom()
     // MODIFIES: this
     // EFFECTS: loads guess log from file
     private void loadLog() {

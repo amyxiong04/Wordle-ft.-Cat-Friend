@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 // Represents a writer that writes JSON representation of guess log to file
 public class JsonWriter {
     private static final int TAB = 4;

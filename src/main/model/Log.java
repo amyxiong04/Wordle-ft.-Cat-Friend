@@ -151,8 +151,6 @@ public class Log implements Writable {
         return json;
     }
 
-    // ATTRIBUTION: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-    //              method name: thingiesToJson()
     // EFFECTS: returns guesses in this log as a JSON array
     private JSONArray guessLogToJson() {
         JSONArray jsonArray = new JSONArray();

@@ -84,7 +84,7 @@ in a guess, and finally the list of all guesses in the guess log.
 
 # Attributions
 - String builder technique to add separators to a string: https://stackoverflow.com/questions/58928521/java-add-separator-to-a-string
-- JsonReader and JsonWriter classes (attribution also found in more detail in specification of referenced methods): https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 
 
 
